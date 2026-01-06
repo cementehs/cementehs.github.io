@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水泥安环智脑 - 安全生产数字化决策伙伴</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2A5B9E;
+            --safety-orange: #F57C00;
+            --cement-gray: #6C7A89;
+            --light-bg: #f8f9fa;
+        }
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0d1b36 0%, #2a5b9e 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        .section-title {
+            color: var(--primary-blue);
+            border-left: 4px solid var(--safety-orange);
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary-blue), #1E3A6B);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-blue), #1E3A6B);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        .btn-warning {
+            background: linear-gradient(to right, var(--safety-orange), #FF9800);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: white;
+        }
+        .contact-form {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        .resource-card {
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-blue);">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-brain"></i> <strong>水泥安环智脑</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">关于我们</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">核心方案</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#resources">资源下载</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section class="hero text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">水泥安环智脑</h1>
+            <p class="lead mb-4" style="font-size: 1.5rem;">聚焦安全环保 · 驱动数字决策</p>
+            <p class="mb-4" style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+                我们专注于水泥行业安全生产数字化，通过AI+IoT技术，帮助企业实现高风险作业的<strong>可知、可防、可控</strong>
+            </p>
+            <div class="mt-4">
+                <a href="#contact" class="btn btn-warning btn-lg me-3">免费咨询</a>
+                <a href="#resources" class="btn btn-outline-light btn-lg">获取资料</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title">关于我们</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="fs-5">
+                        <strong>「水泥安环智脑」</strong>是一支专注于水泥行业安全环保数字化的深度观察者与实战赋能团队。
+                    </p>
+                    <p>
+                        在近二十年的工业数字化实践中，我们洞察到：行业的未来不仅需要数字化的"工具"，更需要一个能够洞察风险、辅助决策、协同管控的<strong>智慧中枢</strong>。
+                    </p>
+                    <p>
+                        我们已服务众多行业标杆企业，积累了丰富的实战经验。我们提供的不仅是软件系统，更是融合了行业最佳实践的<strong>完整解决方案</strong>。
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h5 class="card-title">行业专注</h5>
+                            <p class="card-text">只聚焦水泥及紧密关联行业</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心方案 -->
+    <section id="services" class="py-5" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">核心解决方案</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="text-center p-4">
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h5>智能安全巡检</h5>
+                        <p>告别"打卡式"巡查，实现隐患从发现到整改的全流程闭环</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4">
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h5>高危作业监护</h5>
+                        <p>动火、有限空间等作业全过程数字化监控，风险可控</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4">
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5>人员精准管控</h5>
+                        <p>承包商/相关方全生命周期管理，事故率可降低60%</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4">
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5>预测性维护</h5>
+                        <p>设备故障提前预警，非计划停机减少30%以上</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资源下载 -->
+    <section id="resources" class="py-5">
+        <div class="container">
+            <h2 class="section-title">免费资源下载</h2>
+            <p class="lead mb-4 text-center">立即获取我们为您准备的行业实战资料</p>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="resource-card">
+                        <h5><i class="fas fa-book text-primary me-2"></i>实战工具包</h5>
+                        <p class="text-muted">《水泥行业安全数字化实战工具包》V1.0，包含：认知指南、自评清单、方案图解、ROI测算、标杆案例。</p>
+                        <a href="https://您的网盘链接" class="btn btn-outline-primary btn-sm">下载PDF</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="resource-card">
+                        <h5><i class="fas fa-calculator text-warning me-2"></i>ROI测算工具</h5>
+                        <p class="text-muted">Excel自动计算模板，输入基础数据即可测算安全数字化的投资回报期、年度效益等关键指标。</p>
+                        <a href="https://您的网盘链接" class="btn btn-outline-warning btn-sm">下载Excel</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="resource-card">
+                        <h5><i class="fas fa-chart-bar text-success me-2"></i>行业趋势报告</h5>
+                        <p class="text-muted">《2026年水泥行业安全生产数字化趋势与政策解读》，助您把握发展先机。</p>
+                        <a href="https://您的网盘链接" class="btn btn-outline-success btn-sm">下载报告</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <div class="alert alert-info" style="max-width: 600px; margin: 0 auto;">
+                    <h5><i class="fas fa-gift me-2"></i>特别福利</h5>
+                    <p class="mb-2">添加「智脑君」微信，备注"官网资料"，可额外获取：</p>
+                    <ul class="text-start" style="display: inline-block;">
+                        <li>《某集团水泥数字化转型案例深度拆解》</li>
+                        <li>30分钟免费线上诊断服务</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-5" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-form">
+                        <h4 class="mb-4">获取专属咨询</h4>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">姓名 *</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="company" class="form-label">公司名称 *</label>
+                                <input type="text" class="form-control" id="company" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">联系电话 *</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">您的需求或问题</label>
+                                <textarea class="form-control" id="message" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">提交咨询</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4">
+                        <h4 class="mb-4">其他联系方式</h4>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="feature-icon me-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6>邮箱</h6>
+                                <p class="mb-0">consult@cementehs.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="feature-icon me-3">
+                                <i class="fas fa-weixin"></i>
+                            </div>
+                            <div>
+                                <h6>微信</h6>
+                                <p class="mb-0">智脑君 (AnHuan_ZhiNao)</p>
+                                <small class="text-muted">添加请备注"官网咨询"</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="feature-icon me-3">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6>电话</h6>
+                                <p class="mb-0">137-2438-2011 (肖先生)</p>
+                                <small class="text-muted">工作日 9:00-18:00</small>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h6>关注公众号</h6>
+                            <img src="https://via.placeholder.com/150x150/2A5B9E/FFFFFF?text=公众号二维码" 
+                                 alt="水泥安环智脑公众号二维码" 
+                                 class="img-fluid rounded" 
+                                 style="max-width: 150px;">
+                            <p class="text-muted mt-2">获取最新行业洞察与实战案例</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-brain me-2"></i>水泥安环智脑</h5>
+                    <p class="mb-3" style="max-width: 400px;">专注水泥行业安全生产数字化，提供从诊断规划到落地实施的全栈服务。</p>
+                    <p>让高风险作业 <strong>可知 · 可防 · 可控</strong></p>
+                </div>
+                <div class="col-md-3">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#about" class="text-light text-decoration-none">关于我们</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none">核心方案</a></li>
+                        <li><a href="#resources" class="text-light text-decoration-none">资源下载</a></li>
+                        <li><a href="#contact" class="text-light text-decoration-none">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>法律声明</h5>
+                    <p class="small">© 2026 水泥安环智脑 版权所有</p>
+                    <p class="small">本网站内容仅供参考，不构成任何具体投资或采购建议。</p>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center">
+                <p class="mb-0">官网：www.cementehs.com（建设中） | 邮箱：consult@cementehs.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 简单的表单处理 -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 这里可以添加表单提交逻辑，比如发送到后端或邮箱
+            // 由于是静态页面，我们可以简单处理
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+            
+            // 显示成功消息
+            alert('感谢您的咨询！我们将在24小时内通过电话或微信与您联系。\n\n' + 
+                  '如需即时沟通，请添加微信：AnHuan_ZhiNao');
+            
+            // 清空表单
+            this.reset();
+        });
+    </script>
+</body>
+</html>
