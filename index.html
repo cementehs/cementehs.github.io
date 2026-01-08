@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水泥安环智脑 - 安全生产数字化决策伙伴</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- ====== 完整的 Favicon 配置 ====== -->
-    <!-- 主 Favicon -->
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  
-    <!-- ====== Favicon 配置结束 ====== -->
+    <!-- 将原来的 favicon 配置替换为： -->
+    <link rel="shortcut icon" href="https://cementehs.github.io/favicon.ico">
+    <link rel="icon" href="https://cementehs.github.io/favicon.ico" type="image/x-icon">
     
     <style>
         :root {
@@ -252,25 +250,104 @@
                 <div class="col-md-6">
                     <div class="contact-form">
                         <h4 class="mb-4">获取专属咨询</h4>
+                        
+                        <!-- 表单状态提示 -->
+                        <div id="formAlert" class="alert d-none" role="alert"></div>
+                        
+                        <!-- 表单主体 -->
                         <form id="contactForm">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">姓名 *</label>
-                                <input type="text" class="form-control" id="name" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">姓名 *</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                        <div class="invalid-feedback">请输入姓名</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="company" class="form-label">公司名称 *</label>
+                                        <input type="text" class="form-control" id="company" required>
+                                        <div class="invalid-feedback">请输入公司名称</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="company" class="form-label">公司名称 *</label>
-                                <input type="text" class="form-control" id="company" required>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">联系电话 *</label>
+                                        <input type="tel" class="form-control" id="phone" required 
+                                               pattern="[0-9]{3}[0-9]{4}[0-9]{4}|[0-9]{3}-[0-9]{4}-[0-9]{4}|[0-9]{11}">
+                                        <div class="invalid-feedback">请输入有效的手机号码</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">电子邮箱</label>
+                                        <input type="email" class="form-control" id="email">
+                                        <div class="invalid-feedback">请输入有效的邮箱地址</div>
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="mb-3">
-                                <label for="phone" class="form-label">联系电话 *</label>
-                                <input type="tel" class="form-control" id="phone" required>
+                                <label for="message" class="form-label">您的需求或问题 *</label>
+                                <textarea class="form-control" id="message" rows="4" required 
+                                          placeholder="请详细描述您的需求，例如：企业规模、当前痛点、预算范围、期望时间等"></textarea>
+                                <div class="invalid-feedback">请输入咨询内容</div>
+                                <div class="form-text">建议包含：企业规模、当前痛点、预算范围、期望时间等信息</div>
                             </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">您的需求或问题</label>
-                                <textarea class="form-control" id="message" rows="3"></textarea>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="privacy" required>
+                                <label class="form-check-label small" for="privacy">
+                                    我同意 <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">隐私政策</a>，
+                                    允许水泥安环智脑收集并使用以上信息进行业务沟通。
+                                </label>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">提交咨询</button>
+                            
+                            <button type="submit" class="btn btn-primary w-100" id="submitBtn">
+                                <i class="fas fa-paper-plane me-2"></i> 提交咨询
+                            </button>
                         </form>
+                        
+                        <div class="mt-3 text-center">
+                            <p class="small text-muted mb-2">
+                                <i class="fas fa-shield-alt me-1"></i>
+                                我们承诺保护您的隐私，所有信息仅用于业务沟通
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 隐私政策模态框 -->
+                    <div class="modal fade" id="privacyModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">隐私政策</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h6>信息收集与使用</h6>
+                                    <p>我们收集您提供的姓名、公司、电话、邮箱等信息，仅用于：</p>
+                                    <ul>
+                                        <li>与您进行业务沟通</li>
+                                        <li>为您提供定制化解决方案</li>
+                                        <li>发送行业相关资讯（如您同意）</li>
+                                    </ul>
+                                    
+                                    <h6>信息安全</h6>
+                                    <p>您的信息将安全存储在我们的GitHub私有仓库中，仅授权人员可以访问。</p>
+                                    
+                                    <h6>信息保留</h6>
+                                    <p>除非法律要求，我们将在业务关系结束后6个月内删除您的个人信息。</p>
+                                    
+                                    <h6>联系我们</h6>
+                                    <p>如有隐私相关问题，请联系：consult@cementehs.com</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -373,6 +450,138 @@
             
             // 清空表单
             this.reset();
+        });
+
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const formAlert = document.getElementById('formAlert');
+            
+            // API 端点 - 根据部署环境自动选择
+            const API_ENDPOINT = window.location.hostname === 'localhost' 
+                ? 'http://localhost:3000/api/submit'
+                : '/api/submit';
+            
+            // 显示提示信息
+            function showAlert(message, type = 'info') {
+                formAlert.textContent = message;
+                formAlert.className = `alert alert-${type} alert-dismissible fade show`;
+                formAlert.classList.remove('d-none');
+                
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    formAlert.classList.add('d-none');
+                }, 5000);
+            }
+            
+            // 验证表单
+            function validateForm() {
+                let isValid = true;
+                
+                // 移除之前的验证样式
+                form.querySelectorAll('.is-invalid').forEach(el => {
+                    el.classList.remove('is-invalid');
+                });
+                
+                // 验证必填字段
+                const requiredFields = ['name', 'company', 'phone', 'message'];
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value.trim()) {
+                        field.classList.add('is-invalid');
+                        isValid = false;
+                    }
+                });
+                
+                // 验证电话格式
+                const phoneField = document.getElementById('phone');
+                const phoneRegex = /^[0-9]{3}[0-9]{4}[0-9]{4}$|^[0-9]{3}-[0-9]{4}-[0-9]{4}$|^[0-9]{11}$/;
+                if (phoneField.value && !phoneRegex.test(phoneField.value.replace(/\s/g, ''))) {
+                    phoneField.classList.add('is-invalid');
+                    phoneField.nextElementSibling.textContent = '请输入有效的手机号码（11位数字）';
+                    isValid = false;
+                }
+                
+                // 验证邮箱格式
+                const emailField = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailField.value && !emailRegex.test(emailField.value)) {
+                    emailField.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // 处理表单提交
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // 验证表单
+                if (!validateForm()) {
+                    showAlert('请检查表单中的错误', 'warning');
+                    return;
+                }
+                
+                // 禁用提交按钮，显示加载状态
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>提交中...';
+                submitBtn.disabled = true;
+                
+                // 收集表单数据
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    company: document.getElementById('company').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    message: document.getElementById('message').value.trim()
+                };
+                
+                try {
+                    // 发送到 API
+                    const response = await fetch(API_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // 提交成功
+                        showAlert('✅ ' + result.message, 'success');
+                        
+                        // 清空表单
+                        form.reset();
+                        
+                        // 滚动到顶部
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        
+                        // 可选：记录到控制台（调试用）
+                        console.log('提交成功，Issue URL:', result.data.issue_url);
+                    } else {
+                        // 提交失败
+                        showAlert('❌ ' + result.message, 'danger');
+                    }
+                } catch (error) {
+                    console.error('提交错误:', error);
+                    showAlert('❌ 网络错误，请稍后重试或直接联系我们', 'danger');
+                } finally {
+                    // 恢复按钮状态
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            // 实时验证
+            form.querySelectorAll('input, textarea').forEach(field => {
+                field.addEventListener('blur', function() {
+                    validateForm();
+                });
+            });
         });
     </script>
 </body>
