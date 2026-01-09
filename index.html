@@ -460,8 +460,8 @@
             
             // API 端点 - 根据部署环境自动选择
             const API_ENDPOINT = window.location.hostname === 'localhost' 
-                ? 'http://localhost:3000/api/submit'
-                : '/api/submit';
+                ? 'http://localhost:3000/api/submit-edge'
+                : '/api/submit-edge';
             
             // 显示提示信息
             function showAlert(message, type = 'info') {
@@ -477,38 +477,48 @@
             
             // 验证表单
             function validateForm() {
-                let isValid = true;
-                
-                // 移除之前的验证样式
+                // 清除所有错误状态
                 form.querySelectorAll('.is-invalid').forEach(el => {
                     el.classList.remove('is-invalid');
                 });
                 
-                // 验证必填字段
-                const requiredFields = ['name', 'company', 'phone', 'message'];
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    if (!field.value.trim()) {
-                        field.classList.add('is-invalid');
-                        isValid = false;
-                    }
-                });
+                // 获取值
+                const name = document.getElementById('name').value.trim();
+                const company = document.getElementById('company').value.trim();
+                const phone = document.getElementById('phone').value.trim().replace(/\s/g, '');
+                const message = document.getElementById('message').value.trim();
                 
-                // 验证电话格式
-                const phoneField = document.getElementById('phone');
-                const phoneRegex = /^[0-9]{3}[0-9]{4}[0-9]{4}$|^[0-9]{3}-[0-9]{4}-[0-9]{4}$|^[0-9]{11}$/;
-                if (phoneField.value && !phoneRegex.test(phoneField.value.replace(/\s/g, ''))) {
-                    phoneField.classList.add('is-invalid');
-                    phoneField.nextElementSibling.textContent = '请输入有效的手机号码（11位数字）';
+                let isValid = true;
+                
+                // 验证必填字段
+                if (!name) {
+                    document.getElementById('name').classList.add('is-invalid');
                     isValid = false;
                 }
                 
-                // 验证邮箱格式
-                const emailField = document.getElementById('email');
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (emailField.value && !emailRegex.test(emailField.value)) {
-                    emailField.classList.add('is-invalid');
+                if (!company) {
+                    document.getElementById('company').classList.add('is-invalid');
                     isValid = false;
+                }
+                
+                if (!phone) {
+                    document.getElementById('phone').classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!message) {
+                    document.getElementById('message').classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                // 如果以上都没问题，验证电话格式
+                if (phone && isValid) {
+                    const phoneRegex = /^1[3-9]\d{9}$/;
+                    if (!phoneRegex.test(phone)) {
+                        document.getElementById('phone').classList.add('is-invalid');
+                        document.getElementById('phone').nextElementSibling.textContent = '请输入有效的11位手机号码';
+                        isValid = false;
+                    }
                 }
                 
                 return isValid;
