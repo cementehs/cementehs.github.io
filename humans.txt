@@ -1,0 +1,12 @@
+/* TEAM */
+创始人: 肖先生
+职位: 解决方案架构师
+电话: 137-2438-2011
+邮箱: consult@cementehs.com
+
+/* SITE */
+网站: 水泥安环智脑官网
+描述: 专注水泥行业安全生产数字化
+语言: 中文
+标准: HTML5, CSS3
+组件: Bootstrap 5, Font Awesome

@@ -1,0 +1,5 @@
+{
+    "scripts": {
+      "update-sitemap": "node update-sitemap.js"
+    }
+  }
