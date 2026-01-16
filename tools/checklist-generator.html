@@ -1,0 +1,66 @@
+// 动态生成安全检查表
+function generateChecklist() {
+    const industry = document.getElementById('industry').value;
+    const scale = document.getElementById('scale').value;
+    
+    const checklists = {
+        'cement': {
+            title: '水泥生产企业安全检查清单',
+            items: [
+                { category: '生产安全', items: ['窑系统安全检查', '磨机运行安全', '皮带输送机防护'] },
+                { category: '电气安全', items: ['高压配电室检查', '防雷接地检测', '临时用电管理'] },
+                { category: '消防安全', items: ['消防设施完好性', '易燃易爆品管理', '应急疏散通道'] }
+            ]
+        },
+        'mining': {
+            title: '矿山安全检查清单',
+            items: [
+                { category: '爆破安全', items: ['爆破器材管理', '警戒区域设置', '哑炮处理程序'] },
+                { category: '边坡安全', items: ['边坡稳定性监测', '排水系统检查', '警示标志设置'] }
+            ]
+        }
+    };
+    
+    const checklist = checklists[industry] || checklists.cement;
+    
+    // 生成PDF或可打印版本
+    const htmlContent = `
+        <div class="checklist-print">
+            <h2>${checklist.title}</h2>
+            <p>生成时间：${new Date().toLocaleDateString()}</p>
+            <p>企业规模：${scale}</p>
+            <hr>
+            ${checklist.items.map(section => `
+                <div class="section">
+                    <h4>${section.category}</h4>
+                    <table class="table table-bordered">
+                        ${section.items.map((item, i) => `
+                            <tr>
+                                <td width="5%">${i+1}</td>
+                                <td width="70%">${item}</td>
+                                <td width="25%">
+                                    □ 符合 □ 不符合 □ 不适用<br>
+                                    备注：
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </table>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    // 显示预览
+    document.getElementById('checklistPreview').innerHTML = htmlContent;
+    
+    // 打印功能
+    document.getElementById('printBtn').onclick = () => {
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <html><head><title>安全检查清单</title>
+            <style>body{font-family:"Microsoft YaHei";padding:20px}</style>
+            </head><body>${htmlContent}</body></html>
+        `);
+        printWindow.print();
+    };
+}

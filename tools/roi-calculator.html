@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>安全数字化ROI计算器 - 水泥安环智脑</title>
+    <!-- 复用head -->
+</head>
+<body>
+    <!-- 导航栏 -->
+    
+    <section class="py-5">
+        <div class="container">
+            <h1 class="section-title">安全数字化投资回报计算器</h1>
+            <p class="lead">测算您的企业在安全数字化方面的投资回报周期</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">输入企业数据</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="roiCalculator">
+                                <!-- 企业规模 -->
+                                <div class="mb-3">
+                                    <label class="form-label">企业规模（员工数）</label>
+                                    <input type="number" class="form-control" id="employeeCount" value="500" min="10">
+                                </div>
+                                
+                                <!-- 年安全事故数 -->
+                                <div class="mb-3">
+                                    <label class="form-label">年均安全事故数</label>
+                                    <input type="number" class="form-control" id="accidentCount" value="5" min="0" step="0.1">
+                                    <small class="text-muted">包括轻微伤害及以上事故</small>
+                                </div>
+                                
+                                <!-- 年安全罚款金额 -->
+                                <div class="mb-3">
+                                    <label class="form-label">年均安全罚款（万元）</label>
+                                    <input type="number" class="form-control" id="fineAmount" value="20" min="0">
+                                </div>
+                                
+                                <!-- 投资预算 -->
+                                <div class="mb-3">
+                                    <label class="form-label">数字化投资预算（万元）</label>
+                                    <input type="number" class="form-control" id="investment" value="100" min="10">
+                                </div>
+                                
+                                <button type="button" class="btn btn-primary w-100" onclick="calculateROI()">
+                                    <i class="fas fa-calculator me-2"></i> 立即测算
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">投资回报分析</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="roiResults" class="text-center">
+                                <p class="text-muted">填写左侧数据后点击"测算"</p>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6>关键指标</h6>
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <div class="p-3 bg-light rounded">
+                                            <h3 id="roiPeriod" class="text-primary">--</h3>
+                                            <small>投资回收期（月）</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 bg-light rounded">
+                                            <h3 id="annualSaving" class="text-success">--</h3>
+                                            <small>年节省成本（万元）</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 bg-light rounded">
+                                            <h3 id="roiRatio" class="text-warning">--</h3>
+                                            <small>投资回报率</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 图表区域 -->
+                            <div class="mt-4">
+                                <canvas id="roiChart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    // ROI计算逻辑
+    function calculateROI() {
+        const employeeCount = parseInt(document.getElementById('employeeCount').value);
+        const accidentCount = parseFloat(document.getElementById('accidentCount').value);
+        const fineAmount = parseFloat(document.getElementById('fineAmount').value);
+        const investment = parseFloat(document.getElementById('investment').value);
+        
+        // 计算逻辑
+        const avgAccidentCost = 50; // 万元/次（平均事故成本）
+        const efficiencyGain = 0.15; // 效率提升15%
+        const accidentReduction = 0.6; // 事故减少60%
+        
+        // 年节省计算
+        const savingFromAccidents = accidentCount * avgAccidentCost * accidentReduction;
+        const savingFromFines = fineAmount * 0.8; // 罚款减少80%
+        const savingFromEfficiency = employeeCount * 0.5 * efficiencyGain; // 人均年成本0.5万
+        
+        const totalAnnualSaving = savingFromAccidents + savingFromFines + savingFromEfficiency;
+        const roiPeriodMonths = (investment / totalAnnualSaving) * 12;
+        const roiRatio = (totalAnnualSaving / investment) * 100;
+        
+        // 更新显示
+        document.getElementById('annualSaving').textContent = totalAnnualSaving.toFixed(1);
+        document.getElementById('roiPeriod').textContent = roiPeriodMonths.toFixed(1);
+        document.getElementById('roiRatio').textContent = roiRatio.toFixed(1) + '%';
+        
+        // 显示详细结果
+        document.getElementById('roiResults').innerHTML = `
+            <div class="alert alert-info">
+                <h5>测算结果</h5>
+                <p>基于您提供的数据，安全数字化投资预计：</p>
+                <ul class="text-start">
+                    <li>年节省成本：<strong>${totalAnnualSaving.toFixed(1)}万元</strong></li>
+                    <li>投资回收期：<strong>${roiPeriodMonths.toFixed(1)}个月</strong></li>
+                    <li>投资回报率：<strong>${roiRatio.toFixed(1)}%</strong></li>
+                    <li>建议实施周期：<strong>${Math.ceil(investment/50)}-${Math.ceil(investment/30)}个月</strong></li>
+                </ul>
+            </div>
+        `;
+        
+        // 更新图表
+        updateChart(investment, totalAnnualSaving, roiPeriodMonths);
+    }
+    
+    // 图表更新函数
+    function updateChart(investment, annualSaving, roiPeriod) {
+        const ctx = document.getElementById('roiChart').getContext('2d');
+        
+        // 如果已有图表实例，销毁它
+        if (window.roiChartInstance) {
+            window.roiChartInstance.destroy();
+        }
+        
+        // 计算数据
+        const months = 36; // 显示36个月
+        const monthlySaving = annualSaving / 12;
+        const cumulativeSavings = [];
+        let cumulative = 0;
+        
+        for (let i = 0; i <= months; i++) {
+            if (i > 0) cumulative += monthlySaving;
+            cumulativeSavings.push(cumulative);
+        }
+        
+        // 创建新图表
+        window.roiChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: months+1}, (_, i) => `第${i}月`),
+                datasets: [{
+                    label: '累计节省成本',
+                    data: cumulativeSavings,
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '投资成本线',
+                    data: Array(months+1).fill(investment),
+                    borderColor: 'rgb(255, 99, 132)',
+                    borderDash: [5, 5],
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '投资回报趋势分析'
+                    },
+                    annotation: {
+                        annotations: {
+                            breakEvenPoint: {
+                                type: 'line',
+                                xMin: roiPeriod,
+                                xMax: roiPeriod,
+                                borderColor: 'orange',
+                                borderWidth: 2,
+                                label: {
+                                    content: `盈亏平衡点: ${roiPeriod.toFixed(1)}月`,
+                                    enabled: true,
+                                    position: 'end'
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: '金额（万元）'
+                        }
+                    }
+                }
+            }
+        });
+    }
+    </script>
+</body>
+</html>
