@@ -1,0 +1,1108 @@
+/* 案例与成果页面专用样式 */
+
+/* 面包屑导航 */
+.breadcrumb {
+    background-color: var(--light-gray);
+    padding: 1rem 0;
+    border-bottom: 1px solid #e9ecef;
+    margin-top: 70px; /* 导航栏高度 */
+}
+
+.breadcrumb .container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breadcrumb a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-color);
+}
+
+.breadcrumb span {
+    color: var(--text-light);
+}
+
+/* 页面标题 */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+    color: var(--white);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 成果概览 */
+.achievements-overview {
+    padding: 4rem 0;
+    background-color: var(--white);
+}
+
+.overview-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.overview-text h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+}
+
+.overview-text p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.overview-text strong {
+    color: var(--secondary-color);
+}
+
+.overview-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 案例筛选 */
+.case-filter {
+    padding: 3rem 0;
+    background-color: var(--light-gray);
+    border-top: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.case-filter h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+}
+
+.case-filter p {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background: var(--white);
+    border: 2px solid #ddd;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.filter-search {
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.filter-search input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    padding-right: 50px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.filter-search input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.search-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+/* 案例展示 */
+.cases-showcase {
+    padding: 4rem 0;
+    background-color: var(--white);
+}
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.case-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.case-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.case-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.case-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.case-duration {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.case-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.case-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+.case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.case-tag {
+    background: rgba(42, 91, 158, 0.1);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.case-challenge,
+.case-solution,
+.case-results,
+.case-testimonial,
+.case-metrics,
+.case-before-after {
+    margin-bottom: 1.5rem;
+}
+
+.case-challenge h4,
+.case-solution h4,
+.case-results h4,
+.case-metrics h4,
+.case-before-after h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.case-challenge h4:before {
+    content: "❓";
+}
+
+.case-solution h4:before {
+    content: "🛠️";
+}
+
+.case-results h4:before {
+    content: "📈";
+}
+
+.case-metrics h4:before {
+    content: "📊";
+}
+
+.case-before-after h4:before {
+    content: "🔄";
+}
+
+.case-challenge p {
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.case-solution ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.case-solution li {
+    padding: 0.4rem 0;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.case-solution li:before {
+    content: "✓";
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.result-item {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.result-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.result-text {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+/* 指标条 */
+.metrics-bars {
+    margin-top: 1rem;
+}
+
+.metric-bar {
+    margin-bottom: 1rem;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.metric-bar-container {
+    height: 30px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-bar-fill {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    min-width: 40px;
+}
+
+.metric-bar-fill.before {
+    background: #888;
+    z-index: 1;
+}
+
+.metric-bar-fill.after {
+    background: var(--secondary-color);
+    z-index: 2;
+}
+
+/* 效率图表 */
+.efficiency-chart {
+    margin-top: 1rem;
+}
+
+.chart-item {
+    margin-bottom: 1rem;
+}
+
+.chart-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.chart-bar {
+    height: 30px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.chart-bar-before {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    background: #888;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    min-width: 40px;
+}
+
+.chart-bar-after {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    background: var(--secondary-color);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    min-width: 40px;
+}
+
+/* 实施前后对比 */
+.comparison {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.comparison-before,
+.comparison-after {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.comparison-before {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.comparison-after {
+    background: rgba(42, 91, 158, 0.05);
+    border: 1px solid var(--primary-color);
+}
+
+.comparison-before h5,
+.comparison-after h5 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.comparison-before ul,
+.comparison-after ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comparison-before li,
+.comparison-after li {
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.comparison-before li:before {
+    content: "❌";
+    color: #888;
+    position: absolute;
+    left: 0;
+}
+
+.comparison-after li:before {
+    content: "✅";
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+}
+
+.comparison-arrow {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 客户证言 */
+.case-testimonial {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    margin-top: 1.5rem;
+}
+
+.testimonial-content {
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.testimonial-content:before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--primary-color);
+    opacity: 0.3;
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    font-family: serif;
+}
+
+.testimonial-source {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.testimonial-source strong {
+    color: var(--primary-color);
+}
+
+.case-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+    background: #fafafa;
+}
+
+.case-learn {
+    text-align: center;
+}
+
+.learn-more-btn {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.learn-more-btn:hover {
+    color: var(--primary-color);
+    gap: 0.8rem;
+}
+
+/* 加载更多 */
+.cases-load-more {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+/* 方法论框架 */
+.methodology-framework {
+    padding: 5rem 0;
+    background: var(--light-gray);
+    border-top: 1px solid #e9ecef;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.methodology-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.methodology-diagram {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.methodology-step {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    border-top: 4px solid var(--primary-color);
+}
+
+.methodology-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.step-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.methodology-step h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.methodology-step p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.methodology-download {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 2px dashed var(--primary-color);
+}
+
+.methodology-download h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.methodology-download p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* 行业白皮书 */
+.industry-whitepapers {
+    padding: 5rem 0;
+    background: var(--white);
+}
+
+.whitepapers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.whitepaper-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.whitepaper-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.whitepaper-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.whitepaper-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.whitepaper-date {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.whitepaper-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.whitepaper-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+.whitepaper-content p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.whitepaper-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.whitepaper-stats .stat {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.whitepaper-stats .stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+}
+
+.whitepaper-stats .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.whitepaper-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.whitepaper-highlights li {
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.whitepaper-highlights li:before {
+    content: "•";
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+}
+
+.whitepaper-highlights li:last-child {
+    border-bottom: none;
+}
+
+.whitepaper-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+    background: #fafafa;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.whitepaper-footer .btn {
+    flex: 1;
+    text-align: center;
+}
+
+/* 客户证言 */
+.client-testimonials {
+    padding: 5rem 0;
+    background: var(--light-gray);
+    border-top: 1px solid #e9ecef;
+}
+
+.testimonials-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.testimonial-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.testimonial-content {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.quote-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    opacity: 0.3;
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    font-family: serif;
+}
+
+.testimonial-content p {
+    color: var(--text-color);
+    line-height: 1.7;
+    font-style: italic;
+    font-size: 1.05rem;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1.5rem;
+}
+
+.author-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.author-info p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.testimonials-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.testimonials-cta p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+/* CTA区域 */
+.cases-cta {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+    color: white;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.cta-features {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 模态框 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.modal-content {
+    background: white;
+    max-width: 900px;
+    margin: 2rem auto;
+    border-radius: 10px;
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 3rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+    .overview-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .methodology-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .methodology-diagram {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison {
+        flex-direction: column;
+    }
+    
+    .comparison-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .cases-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .whitepapers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonials-slider {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .overview-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+    }
+    
+    .cta-features {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .whitepaper-footer {
+        flex-direction: column;
+    }
+    
+    .filter-buttons {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+    
+    .filter-btn {
+        white-space: nowrap;
+    }
+    
+    .modal-body {
+        padding: 2rem 1rem;
+    }
+}

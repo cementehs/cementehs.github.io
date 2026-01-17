@@ -1,0 +1,937 @@
+/* 关于我们页面专用样式 */
+
+/* 页面标题区域 */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+    color: var(--white);
+    padding: 6rem 0 4rem;
+    text-align: center;
+    margin-top: 70px; /* 导航栏高度 */
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 面包屑导航 */
+.breadcrumb {
+    background-color: var(--light-gray);
+    padding: 1rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.breadcrumb .container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breadcrumb a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-color);
+}
+
+.breadcrumb span {
+    color: var(--text-light);
+}
+
+/* 关于我们主页面样式 */
+.about-navigation {
+    padding: 4rem 0;
+}
+
+.nav-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.nav-card {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    border-radius: 10px;
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.nav-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.nav-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.nav-card p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.nav-arrow {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.nav-card:hover .nav-arrow {
+    transform: translateX(5px);
+}
+
+/* 品牌概述 */
+.brand-overview {
+    padding: 4rem 0;
+}
+
+.overview-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.overview-text h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+}
+
+.overview-text p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.key-points {
+    margin: 2rem 0;
+}
+
+.key-point {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.key-point h4 {
+    margin-bottom: 0.5rem;
+    color: var(--dark-gray);
+}
+
+.overview-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+/* 价值观 */
+.our-values {
+    padding: 4rem 0;
+    background-color: var(--light-gray);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.value-item {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.value-number {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background: var(--secondary-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.value-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* 对比表格 */
+.why-choose-us {
+    padding: 4rem 0;
+}
+
+.comparison-table {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 2rem;
+}
+
+.comparison-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.comparison-header .comparison-item {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #eee;
+}
+
+.comparison-row:last-child {
+    border-bottom: none;
+}
+
+.comparison-dimension {
+    padding: 1.5rem;
+    background: var(--light-gray);
+    font-weight: bold;
+    border-right: 1px solid #ddd;
+}
+
+.comparison-cell {
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comparison-cell.highlight {
+    background: rgba(245, 124, 0, 0.1);
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* 品牌故事页面样式 */
+.brand-timeline {
+    padding: 4rem 0;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 4rem auto 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 80px;
+}
+
+.timeline-date {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70px;
+    padding: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.timeline-content {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.timeline-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* 品牌理念 */
+.brand-philosophy {
+    padding: 4rem 0;
+    background: var(--light-gray);
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.philosophy-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.philosophy-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.philosophy-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.philosophy-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.philosophy-card li:last-child {
+    border-bottom: none;
+}
+
+/* 名字由来 */
+.name-origin {
+    padding: 4rem 0;
+}
+
+.origin-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.meaning-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.meaning-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.origin-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+/* 团队页面样式 */
+.team-overview {
+    padding: 4rem 0;
+}
+
+.team-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.overview-text {
+    max-width: 800px;
+    margin: 2rem auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.expertise-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.expertise-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--primary-color);
+}
+
+.expertise-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.expertise-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.expertise-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.expertise-card li:before {
+    content: "✓";
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+/* 核心成员 */
+.core-members {
+    padding: 4rem 0;
+    background: var(--light-gray);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    font-style: italic;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.member-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    transition: var(--transition);
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.member-avatar {
+    min-width: 100px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-placeholder {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.member-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.member-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+}
+
+.member-title {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.member-expertise {
+    margin: 1rem 0;
+}
+
+.expertise-tag {
+    display: inline-block;
+    background: rgba(42, 91, 158, 0.1);
+    color: var(--primary-color);
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.member-bio {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* 方法论 */
+.team-methodology {
+    padding: 4rem 0;
+}
+
+.methodology-steps {
+    max-width: 800px;
+    margin: 3rem auto 0;
+}
+
+.method-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.step-number {
+    min-width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.step-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* 合作伙伴页面样式 */
+.partners-principles {
+    padding: 4rem 0;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.principle-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.principle-card:hover {
+    transform: translateY(-5px);
+}
+
+.principle-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.principle-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.principles-note {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: rgba(245, 124, 0, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+/* 合作伙伴分类 */
+.partners-categories {
+    padding: 4rem 0;
+    background: var(--light-gray);
+}
+
+.categories-tabs {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.tab-buttons {
+    display: flex;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    background: var(--white);
+    border-bottom-color: var(--primary-color);
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.tab-content {
+    padding: 2rem;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.category-intro {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.partner-card {
+    display: flex;
+    background: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.partner-card:hover {
+    background: #f0f0f0;
+    transform: translateY(-3px);
+}
+
+.partner-logo-placeholder {
+    min-width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    font-weight: bold;
+}
+
+.partner-info {
+    flex-grow: 1;
+}
+
+.partner-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.partner-desc {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* 合作流程 */
+.cooperation-process {
+    padding: 4rem 0;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.process-step {
+    text-align: center;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
+}
+
+.step-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* 成为合作伙伴 */
+.become-partner {
+    padding: 4rem 0;
+    background: var(--light-gray);
+}
+
+.partner-cta {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.partner-cta h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.partner-requirements {
+    text-align: left;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.partner-requirements h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.partner-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.partner-requirements li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.partner-requirements li:before {
+    content: "•";
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+}
+
+/* 页面导航 */
+.page-navigation {
+    padding: 3rem 0;
+    border-top: 1px solid #eee;
+}
+
+.page-navigation .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CTA区域 */
+.about-cta {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+    color: white;
+    text-align: center;
+}
+
+.about-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.join-us {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a4177 0%, var(--primary-color) 100%);
+    color: white;
+}
+
+.join-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.join-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.join-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.join-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .overview-content,
+    .origin-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .comparison-header,
+    .comparison-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-dimension {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        padding-left: 60px;
+    }
+    
+    .timeline-date {
+        width: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .member-card {
+        flex-direction: column;
+    }
+    
+    .member-avatar {
+        min-width: 100%;
+        height: 100px;
+    }
+    
+    .page-navigation .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .tab-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .cta-actions,
+    .join-actions {
+        flex-direction: column;
+    }
+}
