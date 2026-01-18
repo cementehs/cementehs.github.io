@@ -520,4 +520,178 @@
     .partners-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* 新增：数据展示样式 */
+    .stats-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .stat-item {
+        background: white;
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-item:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .stat-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, rgba(42, 91, 158, 0.1), rgba(42, 91, 158, 0.05));
+        border-radius: 0 0 0 60px;
+        transition: var(--transition);
+    }
+
+    .stat-item:hover::before {
+        width: 80px;
+        height: 80px;
+    }
+
+    .stat-number {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        display: block;
+        line-height: 1;
+    }
+
+    .stat-number sup {
+        color: var(--secondary-color);
+        font-size: 2rem;
+        vertical-align: super;
+    }
+
+    .stat-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-desc {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .stat-divider {
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        margin: 1.5rem auto 0;
+        border-radius: 2px;
+    }
+
+    /* 新增：流程步骤样式 */
+    .process-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .process-step {
+        flex: 0 0 30%;
+        max-width: 280px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .step-number {
+        width: 70px;
+        height: 70px;
+        background: white;
+        border: 3px solid var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 4px 12px rgba(42, 91, 158, 0.2);
+        transition: var(--transition);
+    }
+
+    .step-content {
+        background: white;
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-md);
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .step-title {
+        color: var(--primary-color);
+        margin: 0 0 1rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.3;
+        min-height: 2.6rem;
+    }
+
+    .step-desc {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+        flex-grow: 1;
+    }
+
+    /* 交互效果 */
+    .process-step:hover .step-number {
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(42, 91, 158, 0.3);
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border-color: transparent;
+    }
+
+    .process-step:hover .step-title {
+        color: var(--secondary-color);
+    }
+
+    .process-step:hover .step-content {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 992px) {
+        .process-container > div {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .process-step {
+            flex: 0 0 calc(50% - 2rem) !important;
+            max-width: 300px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .process-step {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+    }
 }
