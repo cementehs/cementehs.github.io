@@ -1,0 +1,977 @@
+/* 响应式设计 - 适配所有设备 */
+
+/* 通用响应式调整 */
+
+/* 超大屏幕（桌面大屏幕） */
+@media (max-width: 1400px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* 大屏幕（桌面） */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    /* 导航栏调整 */
+    .nav-menu li {
+        margin: 0 0.5rem;
+    }
+    
+    /* 首页英雄区域 */
+    .hero {
+        padding: 6rem 1rem 3rem;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.6rem;
+    }
+}
+
+/* 中等屏幕（平板横向） */
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    /* 导航栏调整为汉堡菜单 */
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--white);
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        overflow-y: auto;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 2rem;
+    }
+    
+    .nav-menu li {
+        margin: 0.5rem 0;
+    }
+    
+    .nav-menu a {
+        display: block;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-menu a.active {
+        color: var(--primary-color);
+        border-left: 4px solid var(--primary-color);
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-cta {
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+    
+    /* 首页调整 */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 5rem 1rem 2rem;
+        min-height: auto;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 3rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .hero-description {
+        max-width: 100%;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    /* 价值主张网格调整 */
+    .value-grid,
+    .solutions-grid,
+    .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* 关于我们页面调整 */
+    .overview-content,
+    .origin-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .team-stats,
+    .overview-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* 核心服务页面调整 */
+    .service-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-navigation {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .combination-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 解决方案页面调整 */
+    .solutions-tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .comparison-table .comparison-header,
+    .comparison-table .comparison-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .path-step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    /* 案例页面调整 */
+    .cases-grid,
+    .whitepapers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .methodology-diagram {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 资源中心页面调整 */
+    .resources-tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .access-levels {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 小屏幕（平板纵向） */
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+        padding: 0 1rem;
+    }
+    
+    /* 通用页面标题调整 */
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    /* 导航栏进一步调整 */
+    .nav-container {
+        padding: 1rem;
+    }
+    
+    .logo span {
+        font-size: 1rem;
+    }
+    
+    /* 首页进一步调整 */
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn-large {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* 网格布局调整为单列 */
+    .value-grid,
+    .solutions-grid,
+    .advantages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .value-card,
+    .solution-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* 表单调整 */
+    .form-group {
+        flex-direction: column;
+    }
+    
+    .form-group input,
+    .form-group button {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    /* 页脚调整 */
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-section {
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    /* 关于我们页面进一步调整 */
+    .nav-cards,
+    .principles-grid,
+    .values-grid,
+    .expertise-areas,
+    .members-grid,
+    .methodology-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-header,
+    .comparison-row {
+        display: block;
+    }
+    
+    .comparison-cell {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .comparison-row .feature-cell {
+        background: #f0f0f0;
+        font-weight: bold;
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        padding-left: 60px;
+    }
+    
+    .timeline-date {
+        width: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .member-card {
+        flex-direction: column;
+    }
+    
+    .member-avatar {
+        min-width: 100%;
+        height: 100px;
+    }
+    
+    .page-navigation .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* 核心服务页面进一步调整 */
+    .tab-navigation {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-btn {
+        padding: 1rem;
+    }
+    
+    .service-panel {
+        padding: 1.5rem;
+    }
+    
+    .service-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+    }
+    
+    .service-cta {
+        flex-direction: column;
+    }
+    
+    /* 解决方案页面进一步调整 */
+    .solutions-tabs {
+        grid-template-columns: 1fr;
+    }
+    
+    .solution-tab {
+        padding: 1rem;
+    }
+    
+    .solution-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps-grid,
+    .guide-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-features {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    /* 案例页面进一步调整 */
+    .cases-grid,
+    .whitepapers-grid,
+    .testimonials-slider {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-stats,
+    .overview-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-buttons {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+    
+    .filter-btn {
+        white-space: nowrap;
+    }
+    
+    /* 资源中心页面进一步调整 */
+    .resources-tabs {
+        grid-template-columns: 1fr;
+    }
+    
+    .resources-grid,
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .recommendation-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-body {
+        padding: 2rem 1rem;
+    }
+    
+    /* 通用CTA区域调整 */
+    .cta-actions {
+        flex-direction: column;
+    }
+    
+    .cta-features {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+/* 超小屏幕（手机） */
+@media (max-width: 576px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    /* 更小的字体大小 */
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* 首页微调 */
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    /* 按钮调整 */
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* 卡片内边距调整 */
+    .value-card,
+    .solution-card,
+    .case-card,
+    .resource-card {
+        padding: 1.5rem;
+    }
+    
+    /* 表格调整 */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    /* 页脚底部调整 */
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    /* 面包屑导航调整 */
+    .breadcrumb {
+        font-size: 0.9rem;
+    }
+    
+    /* 关于我们页面微调 */
+    .timeline::before {
+        left: 15px;
+    }
+    
+    .timeline-item {
+        padding-left: 50px;
+    }
+    
+    .timeline-date {
+        width: 40px;
+        font-size: 0.8rem;
+        padding: 0.3rem;
+    }
+    
+    .timeline-content {
+        padding: 1rem;
+    }
+    
+    /* 核心服务页面微调 */
+    .price-tag {
+        font-size: 1.5rem;
+    }
+    
+    /* 解决方案页面微调 */
+    .roi-results {
+        grid-template-columns: 1fr;
+    }
+    
+    .result-card {
+        padding: 1rem;
+    }
+    
+    .result-value {
+        font-size: 2rem;
+    }
+    
+    /* 案例页面微调 */
+    .case-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 资源中心页面微调 */
+    .resource-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .resource-footer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .resource-footer .btn {
+        width: 100%;
+    }
+    
+    /* 模态框调整 */
+    .modal-content {
+        margin: 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+/* 非常小的屏幕（小手机） */
+@media (max-width: 375px) {
+    /* 进一步调整字体大小 */
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* 首页微调 */
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* 导航栏logo调整 */
+    .logo span {
+        display: none;
+    }
+    
+    .logo img {
+        height: 35px;
+    }
+    
+    /* 卡片内边距进一步减小 */
+    .value-card,
+    .solution-card,
+    .case-card,
+    .resource-card {
+        padding: 1rem;
+    }
+    
+    /* 表格单元格内边距减小 */
+    td, th {
+        padding: 0.5rem;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    /* 隐藏不需要打印的元素 */
+    .main-nav,
+    .mobile-menu-btn,
+    .breadcrumb,
+    .cta-section,
+    .main-footer,
+    .nav-cta,
+    .btn {
+        display: none !important;
+    }
+    
+    /* 调整页面布局 */
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    /* 确保链接在打印时显示URL */
+    a {
+        color: #000 !important;
+        text-decoration: underline;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+    }
+    
+    /* 避免在打印时分页 */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    
+    img {
+        page-break-inside: avoid;
+        max-width: 100% !important;
+    }
+    
+    /* 确保表格在打印时完整显示 */
+    table {
+        page-break-inside: avoid;
+    }
+    
+    /* 打印时的边距 */
+    @page {
+        margin: 2cm;
+    }
+}
+
+/* 横屏模式调整 */
+@media (max-width: 768px) and (orientation: landscape) {
+    /* 导航菜单高度调整 */
+    .nav-menu {
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+    
+    /* 英雄区域高度调整 */
+    .hero {
+        min-height: auto;
+        padding: 4rem 1rem 2rem;
+    }
+    
+    /* 确保在横屏模式下内容不会太挤 */
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+/* 高分辨率屏幕（Retina） */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* 可以在这里添加高分辨率屏幕的优化样式 */
+    .logo img {
+        /* 如果有高分辨率logo图片，可以在这里指定 */
+        /* background-image: url('images/logo/logo@2x.png'); */
+        background-size: contain;
+    }
+}
+
+/* 深色模式支持（实验性） */
+@media (prefers-color-scheme: dark) {
+    /* 注意：这只是一个示例，实际使用时需要更全面的深色主题设计 */
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+    
+    .main-nav {
+        background-color: #1e1e1e;
+    }
+    
+    .nav-menu a {
+        color: #e0e0e0;
+    }
+    
+    .value-card,
+    .solution-card,
+    .case-card,
+    .resource-card {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+    }
+}
+
+/* 运动偏好减少（减少动画） */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #0000AA; /* 深蓝色 */
+        --secondary-color: #AA5500; /* 深橙色 */
+    }
+    
+    .btn-primary {
+        border: 2px solid #000;
+    }
+    
+    .btn-secondary {
+        border: 2px solid #000;
+    }
+}
+
+/* 触控设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    /* 增加触摸目标大小 */
+    .btn,
+    .nav-menu a,
+    .filter-btn,
+    .resource-tab,
+    .solution-tab,
+    .tab-btn {
+        min-height: 44px; /* Apple推荐的最小触摸目标尺寸 */
+        padding: 12px 16px;
+    }
+    
+    /* 移除悬停效果，保留点击效果 */
+    .btn:hover,
+    .nav-menu a:hover,
+    .filter-btn:hover,
+    .resource-tab:hover,
+    .solution-tab:hover,
+    .tab-btn:hover {
+        transform: none;
+    }
+    
+    /* 增加表单元素触摸目标 */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px; /* 防止iOS自动缩放 */
+        min-height: 44px;
+    }
+    
+    /* 增加复选框和单选框触摸目标 */
+    input[type="checkbox"],
+    input[type="radio"] {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* 旧浏览器兼容性警告（可选的） */
+@supports not (display: grid) {
+    .value-grid,
+    .solutions-grid,
+    .advantages-grid,
+    .cases-grid,
+    .resources-grid {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .value-card,
+    .solution-card,
+    .case-card,
+    .resource-card {
+        flex: 1 0 300px;
+        margin: 10px;
+    }
+}
+
+/* 滚动条样式（Webkit浏览器） */
+@media (min-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #1a4177;
+    }
+}
+
+/* 确保图片在响应式中不会溢出 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 确保iframe和嵌入内容响应式 */
+iframe,
+embed,
+object,
+video {
+    max-width: 100%;
+}
+
+/* 修复iOS输入框样式 */
+input,
+textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+/* 修复iOS按钮样式 */
+button {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+/* 确保长单词或URL在移动设备上不会破坏布局 */
+body {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+/* 改善移动设备上的阅读体验 */
+p, li, td, th {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* 在移动设备上隐藏不必要的元素 */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+/* 在桌面设备上隐藏不必要的元素 */
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/* 加载状态样式 */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 错误状态样式 */
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* 成功状态样式 */
+.success-message {
+    color: #28a745;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* 禁用状态样式 */
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+}
+
+/* 焦点状态样式（无障碍访问） */
+:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* 跳过导航链接（无障碍访问） */
+.skip-nav {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 1001;
+    text-decoration: none;
+}
+
+.skip-nav:focus {
+    top: 0;
+}
+
+/* 屏幕阅读器专用文本 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}

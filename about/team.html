@@ -3,12 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="智脑君专家团队 - 水泥工艺、安全与数字化的跨界专家">
     <title>团队介绍 | 水泥安环智脑</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/about-pages.css">
+    <link rel="stylesheet" href="../css/about-pages-new.css">
     <link rel="icon" type="image/x-icon" href="../images/logo/favicon.ico">
+    <style>
+        .team-overview {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .expertise-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .expertise-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border-top: 4px solid;
+            height: 100%;
+        }
+        
+        .expertise-card:nth-child(1) {
+            border-color: #4CAF50;
+        }
+        
+        .expertise-card:nth-child(2) {
+            border-color: #2196F3;
+        }
+        
+        .expertise-card:nth-child(3) {
+            border-color: #FF9800;
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .core-team {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .methodology-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+            color: white;
+        }
+        
+        .methodology-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .methodology-step {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .methodology-step:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .join-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .join-card {
+            background: linear-gradient(135deg, #f0f7ff, #e6f2ff);
+            border-radius: var(--radius);
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px dashed var(--primary-color);
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -24,7 +114,7 @@
             <div class="nav-menu">
                 <ul>
                     <li><a href="../index.html">首页</a></li>
-                    <li><a href="../about.html" class="active">关于我们</a></li>
+                    <li><a href="../about.html">关于我们</a></li>
                     <li><a href="../services.html">核心服务</a></li>
                     <li><a href="../solutions.html">解决方案</a></li>
                     <li><a href="../cases.html">案例与成果</a></li>
@@ -56,141 +146,175 @@
 
     <!-- 主内容区 -->
     <main>
-        <!-- 页面标题 -->
+        <!-- 英雄区域 -->
         <section class="page-header">
             <div class="container">
-                <h1>智脑君专家团队</h1>
-                <p>融合水泥工艺、安全管理和数字技术的跨界专家网络</p>
+                <h1>团队介绍</h1>
+                <p class="subtitle">融合水泥工艺、安全管理和数字技术的跨界专家网络</p>
             </div>
         </section>
 
         <!-- 团队概览 -->
         <section class="team-overview">
             <div class="container">
-                <h2 class="section-title">独特的团队构成</h2>
-                
-                <div class="team-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">平均行业经验</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3+</div>
-                        <div class="stat-label">跨界能力维度</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">服务项目案例</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">水泥行业专注</div>
+                <div class="visual-card" style="max-width: 900px; margin: 0 auto;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                        <div>
+                            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 2.2rem;">独特的团队构成</h2>
+                            <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1.5rem;">智脑君不是一个具体的个人，而是一个<strong style="color: var(--secondary-color);">由资深行业专家、前大型项目负责人及数字化架构师构成的智慧网络</strong>。</p>
+                            <p style="color: var(--text-color); line-height: 1.8;">所有专家均遵循我们统一的"工艺-风险-技术-经济"四维分析框架工作。</p>
+                        </div>
+                        <div>
+                            <div class="icon-card" style="background: linear-gradient(135deg, #f0f7ff, #e6f2ff);">
+                                <div class="icon-wrapper">🤝</div>
+                                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">专家网络模式</h3>
+                                <p style="color: var(--text-color);">根据项目需求匹配最适合的专家组合</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <p class="overview-text">
-                    智脑君不是一个具体的个人，而是一个<strong>由资深行业专家、前大型项目负责人及数字化架构师构成的智慧网络</strong>。所有专家均遵循我们统一的"工艺-风险-技术-经济"四维分析框架工作。
-                </p>
+                <div class="stats-grid" style="margin-top: 3rem;">
+                    <div class="stat-card">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">平均行业经验</span>
+                    </div>
+                    
+                    <div class="stat-card" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">跨界能力维度</span>
+                    </div>
+                    
+                    <div class="stat-card" style="background: linear-gradient(135deg, #2196F3, #0b7dda);">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">服务项目案例</span>
+                    </div>
+                    
+                    <div class="stat-card" style="background: linear-gradient(135deg, #FF9800, #e68a00);">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">水泥行业专注</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 专业领域 -->
+        <section class="expertise-section">
+            <div class="container">
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">我们的专业领域</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">三大核心专业能力的完美融合</p>
                 
-                <div class="expertise-areas">
+                <div class="expertise-grid">
                     <div class="expertise-card">
-                        <h3>水泥工艺专家</h3>
-                        <ul>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #4CAF50, #45a049); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem;">🏭</div>
+                            <h3 style="margin: 0; color: var(--primary-color);">水泥工艺专家</h3>
+                        </div>
+                        <ul style="color: var(--text-color); padding-left: 1.2rem; margin: 0; line-height: 1.8;">
                             <li>10年以上水泥厂生产管理经验</li>
                             <li>熟悉预热器、回转窑、煤磨等核心工艺</li>
                             <li>理解设备运行与维护的关键风险点</li>
+                            <li>掌握水泥生产全流程工艺优化</li>
                         </ul>
                     </div>
                     
                     <div class="expertise-card">
-                        <h3>安全管理专家</h3>
-                        <ul>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #2196F3, #0b7dda); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem;">🛡️</div>
+                            <h3 style="margin: 0; color: var(--primary-color);">安全管理专家</h3>
+                        </div>
+                        <ul style="color: var(--text-color); padding-left: 1.2rem; margin: 0; line-height: 1.8;">
                             <li>注册安全工程师资质</li>
                             <li>大型集团安全体系建设经验</li>
                             <li>熟悉事故调查与预防措施</li>
+                            <li>掌握EHS管理体系标准</li>
                         </ul>
                     </div>
                     
                     <div class="expertise-card">
-                        <h3>数字化架构师</h3>
-                        <ul>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FF9800, #e68a00); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem;">💻</div>
+                            <h3 style="margin: 0; color: var(--primary-color);">数字化架构师</h3>
+                        </div>
+                        <ul style="color: var(--text-color); padding-left: 1.2rem; margin: 0; line-height: 1.8;">
                             <li>工业互联网平台架构经验</li>
                             <li>AI、IoT、大数据技术应用</li>
                             <li>系统集成与数据治理能力</li>
+                            <li>掌握企业数字化转型路径</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 核心成员（虚拟形象，保护隐私） -->
-        <section class="core-members">
+        <!-- 核心团队 -->
+        <section class="core-team">
             <div class="container">
-                <h2 class="section-title">我们的核心专家代表</h2>
-                <p class="section-subtitle">（注：为保护专家隐私，以下使用虚拟形象与化名，但均代表真实存在的专家能力）</p>
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">核心专家代表</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">（注：为保护专家隐私，以下使用虚拟形象与化名，但均代表真实存在的专家能力）</p>
                 
-                <div class="members-grid">
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <div class="avatar-placeholder">张</div>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-header">
+                            <div class="member-avatar" style="background: linear-gradient(135deg, #4CAF50, #45a049);">张</div>
+                            <h3 style="color: var(--primary-color); margin: 0 0 0.3rem;">张工 · 水泥工艺专家</h3>
+                            <p style="color: var(--secondary-color); font-weight: bold; margin: 0; font-size: 0.9rem;">前大型水泥集团生产总监</p>
                         </div>
-                        <div class="member-info">
-                            <h3>张工 · 水泥工艺专家</h3>
-                            <p class="member-title">前大型水泥集团生产总监</p>
+                        <div class="member-content">
                             <div class="member-expertise">
                                 <span class="expertise-tag">预热器工艺</span>
                                 <span class="expertise-tag">设备管理</span>
                                 <span class="expertise-tag">节能优化</span>
                             </div>
-                            <p class="member-bio">拥有18年水泥生产管理经验，熟悉从原料到成品的全流程工艺，曾主导多个大型生产线技术改造项目。</p>
+                            <p style="color: var(--text-color); line-height: 1.6; margin: 1rem 0 0;">拥有18年水泥生产管理经验，熟悉从原料到成品的全流程工艺，曾主导多个大型生产线技术改造项目。</p>
                         </div>
                     </div>
                     
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <div class="avatar-placeholder">王</div>
+                    <div class="team-member">
+                        <div class="member-header">
+                            <div class="member-avatar" style="background: linear-gradient(135deg, #2196F3, #0b7dda);">王</div>
+                            <h3 style="color: var(--primary-color); margin: 0 0 0.3rem;">王工 · 安全专家</h3>
+                            <p style="color: var(--secondary-color); font-weight: bold; margin: 0; font-size: 0.9rem;">注册安全工程师</p>
                         </div>
-                        <div class="member-info">
-                            <h3>王工 · 安全专家</h3>
-                            <p class="member-title">注册安全工程师</p>
+                        <div class="member-content">
                             <div class="member-expertise">
                                 <span class="expertise-tag">有限空间作业</span>
                                 <span class="expertise-tag">承包商管理</span>
                                 <span class="expertise-tag">应急体系</span>
                             </div>
-                            <p class="member-bio">12年水泥行业安全管理经验，曾为多家大型水泥集团建立安全管理体系，熟悉各类安全风险防控。</p>
+                            <p style="color: var(--text-color); line-height: 1.6; margin: 1rem 0 0;">12年水泥行业安全管理经验，曾为多家大型水泥集团建立安全管理体系，熟悉各类安全风险防控。</p>
                         </div>
                     </div>
                     
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <div class="avatar-placeholder">李</div>
+                    <div class="team-member">
+                        <div class="member-header">
+                            <div class="member-avatar" style="background: linear-gradient(135deg, #FF9800, #e68a00);">李</div>
+                            <h3 style="color: var(--primary-color); margin: 0 0 0.3rem;">李工 · 数字化架构师</h3>
+                            <p style="color: var(--secondary-color); font-weight: bold; margin: 0; font-size: 0.9rem;">工业互联网专家</p>
                         </div>
-                        <div class="member-info">
-                            <h3>李工 · 数字化架构师</h3>
-                            <p class="member-title">工业互联网专家</p>
+                        <div class="member-content">
                             <div class="member-expertise">
                                 <span class="expertise-tag">系统集成</span>
                                 <span class="expertise-tag">数据分析</span>
                                 <span class="expertise-tag">AI应用</span>
                             </div>
-                            <p class="member-bio">15年工业数字化经验，曾主导多个大型制造企业数字化转型项目，熟悉各类工业软件与平台架构。</p>
+                            <p style="color: var(--text-color); line-height: 1.6; margin: 1rem 0 0;">15年工业数字化经验，曾主导多个大型制造企业数字化转型项目，熟悉各类工业软件与平台架构。</p>
                         </div>
                     </div>
                     
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <div class="avatar-placeholder">陈</div>
+                    <div class="team-member">
+                        <div class="member-header">
+                            <div class="member-avatar" style="background: linear-gradient(135deg, #9C27B0, #7b1fa2);">陈</div>
+                            <h3 style="color: var(--primary-color); margin: 0 0 0.3rem;">陈工 · 项目经理</h3>
+                            <p style="color: var(--secondary-color); font-weight: bold; margin: 0; font-size: 0.9rem;">PMP认证项目经理</p>
                         </div>
-                        <div class="member-info">
-                            <h3>陈工 · 项目经理</h3>
-                            <p class="member-title">PMP认证项目经理</p>
+                        <div class="member-content">
                             <div class="member-expertise">
                                 <span class="expertise-tag">项目规划</span>
                                 <span class="expertise-tag">资源协调</span>
                                 <span class="expertise-tag">成果交付</span>
                             </div>
-                            <p class="member-bio">10年大型工业项目管理经验，擅长跨部门协调与复杂项目实施，确保项目按时高质量交付。</p>
+                            <p style="color: var(--text-color); line-height: 1.6; margin: 1rem 0 0;">10年大型工业项目管理经验，擅长跨部门协调与复杂项目实施，确保项目按时高质量交付。</p>
                         </div>
                     </div>
                 </div>
@@ -198,74 +322,80 @@
         </section>
 
         <!-- 工作方法论 -->
-        <section class="team-methodology">
+        <section class="methodology-section">
             <div class="container">
-                <h2 class="section-title">我们的工作方法论</h2>
+                <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2.5rem;">我们的工作方法论</h2>
+                <p style="text-align: center; opacity: 0.9; max-width: 700px; margin: 0 auto 3rem;">基于《水泥安全数字化成熟度模型》的系统化工作流程</p>
                 
                 <div class="methodology-steps">
-                    <div class="method-step">
-                        <div class="step-number">01</div>
-                        <div class="step-content">
-                            <h3>深度诊断</h3>
-                            <p>通过《水泥安全数字化成熟度模型》，系统评估企业现状，识别核心痛点与改进机会。</p>
+                    <div class="methodology-step">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">01</div>
+                            <h3 style="margin: 0; color: white; font-size: 1.3rem;">深度诊断</h3>
                         </div>
+                        <p style="opacity: 0.9; margin: 0; line-height: 1.6;">通过《水泥安全数字化成熟度模型》，系统评估企业现状，识别核心痛点与改进机会。</p>
                     </div>
                     
-                    <div class="method-step">
-                        <div class="step-number">02</div>
-                        <div class="step-content">
-                            <h3>跨专业协作</h3>
-                            <p>工艺、安全、数字化专家共同研讨，确保方案既符合生产实际，又能落地见效。</p>
+                    <div class="methodology-step">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">02</div>
+                            <h3 style="margin: 0; color: white; font-size: 1.3rem;">跨专业协作</h3>
                         </div>
+                        <p style="opacity: 0.9; margin: 0; line-height: 1.6;">工艺、安全、数字化专家共同研讨，确保方案既符合生产实际，又能落地见效。</p>
                     </div>
                     
-                    <div class="method-step">
-                        <div class="step-number">03</div>
-                        <div class="step-content">
-                            <h3>渐进实施</h3>
-                            <p>推荐小步快跑的实施策略，通过试点验证效果，再逐步推广，降低投资风险。</p>
+                    <div class="methodology-step">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">03</div>
+                            <h3 style="margin: 0; color: white; font-size: 1.3rem;">渐进实施</h3>
                         </div>
+                        <p style="opacity: 0.9; margin: 0; line-height: 1.6;">推荐小步快跑的实施策略，通过试点验证效果，再逐步推广，降低投资风险。</p>
                     </div>
                     
-                    <div class="method-step">
-                        <div class="step-number">04</div>
-                        <div class="step-content">
-                            <h3>持续优化</h3>
-                            <p>建立数据反馈机制，持续跟踪实施效果，不断优化改进，确保持续价值创造。</p>
+                    <div class="methodology-step">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">04</div>
+                            <h3 style="margin: 0; color: white; font-size: 1.3rem;">持续优化</h3>
                         </div>
+                        <p style="opacity: 0.9; margin: 0; line-height: 1.6;">建立数据反馈机制，持续跟踪实施效果，不断优化改进，确保持续价值创造。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 加入我们（咨询合作） -->
-        <section class="join-us">
+        <!-- 加入我们 -->
+        <section class="join-section">
             <div class="container">
-                <div class="join-content">
-                    <h2>专家合作网络</h2>
-                    <p>我们持续寻找在水泥工艺、安全管理、数字化技术领域有深厚积累的专家，共同为客户创造更大价值。</p>
-                    <p>如果您是相关领域的专家，并认同我们的理念，欢迎与我们联系探讨合作可能。</p>
+                <div class="join-card">
+                    <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 2.2rem;">专家合作网络</h2>
+                    <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">我们持续寻找在水泥工艺、安全管理、数字化技术领域有深厚积累的专家，共同为客户创造更大价值。</p>
+                    <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 2.5rem;">如果您是相关领域的专家，并认同我们的理念，欢迎与我们联系探讨合作可能。</p>
                     
-                    <div class="join-actions">
-                        <a href="../contact.html?type=expert" class="btn btn-primary">申请加入专家网络</a>
-                        <a href="partners.html" class="btn btn-secondary">了解合作伙伴</a>
+                    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="../contact.html?type=expert" class="btn btn-primary" style="padding: 0.8rem 2rem;">申请加入专家网络</a>
+                        <a href="partners.html" class="btn btn-secondary" style="padding: 0.8rem 2rem;">了解合作伙伴</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 返回导航 -->
-        <section class="page-navigation">
+        <section style="padding: 3rem 0; background: var(--white); border-top: 1px solid var(--medium-gray);">
             <div class="container">
-                <a href="brand-story.html" class="btn btn-secondary">← 品牌故事</a>
-                <a href="partners.html" class="btn btn-primary">合作伙伴 →</a>
+                <div style="display: flex; justify-content: center; gap: 1.5rem;">
+                    <a href="brand-story.html" class="btn btn-secondary" style="padding: 0.8rem 2rem;">
+                        ← 品牌故事
+                    </a>
+                    <a href="partners.html" class="btn btn-primary" style="padding: 0.8rem 2rem;">
+                        合作伙伴 →
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- 页脚 -->
     <footer class="main-footer">
-        <!-- 页脚内容与首页一致 -->
         <div class="footer-container">
             <div class="footer-section">
                 <div class="footer-logo">
@@ -274,9 +404,9 @@
                 </div>
                 <p>专注水泥行业安全生产数字化智慧服务</p>
                 <div class="social-links">
-                    <a href="#" aria-label="微信公众号"><i>📱</i></a>
-                    <a href="#" aria-label="LinkedIn"><i>💼</i></a>
-                    <a href="#" aria-label="知乎"><i>知</i></a>
+                    <a href="#" aria-label="微信公众号">📱</a>
+                    <a href="#" aria-label="LinkedIn">💼</a>
+                    <a href="#" aria-label="知乎">知</a>
                 </div>
             </div>
             
@@ -317,5 +447,48 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // 团队卡片动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const teamMembers = document.querySelectorAll('.team-member');
+            const expertiseCards = document.querySelectorAll('.expertise-card');
+            const methodologySteps = document.querySelectorAll('.methodology-step');
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            // 观察所有需要动画的元素
+            [...teamMembers, ...expertiseCards, ...methodologySteps].forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            // 专业知识标签悬停效果
+            const expertiseTags = document.querySelectorAll('.expertise-tag');
+            expertiseTags.forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                tag.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

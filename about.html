@@ -3,14 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="关于水泥安环智脑 - 我们是谁，我们做什么，我们的使命">
     <title>关于我们 | 水泥安环智脑</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/about-pages-new.css">
     <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+    <style>
+        /* 页面特定样式 */
+        .quick-nav {
+            padding: 2rem 0;
+            background: var(--light-gray);
+            margin-top: -40px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), #1a4177);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .value-showcase {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .comparison-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .stats-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
 </head>
 <body>
-    <!-- 导航栏（复用首页导航） -->
+    <!-- 导航栏 -->
     <nav class="main-nav">
         <div class="nav-container">
             <div class="logo">
@@ -44,166 +122,249 @@
         </div>
     </nav>
 
+    <!-- 面包屑导航 -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">首页</a> &gt;
+            <span>关于我们</span>
+        </div>
+    </div>
+
     <!-- 主内容区 -->
     <main>
-        <!-- 页面标题 -->
+        <!-- 英雄区域 -->
         <section class="page-header">
             <div class="container">
                 <h1>关于我们</h1>
-                <p>专注水泥行业安全生产数字化，成为您最可信赖的智慧伙伴</p>
+                <p class="subtitle">专注水泥行业安全生产数字化，成为您最值得信赖的智慧伙伴</p>
             </div>
         </section>
 
         <!-- 快速导航 -->
-        <section class="about-navigation">
+        <section class="quick-nav">
             <div class="container">
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem;">探索更多</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 600px; margin: 0 auto 2rem;">深入了解我们的品牌故事、专家团队和合作伙伴</p>
+                
                 <div class="nav-cards">
                     <a href="about/brand-story.html" class="nav-card">
-                        <div class="card-icon">📖</div>
-                        <h3>品牌故事</h3>
-                        <p>了解我们的初心与使命</p>
-                        <span class="nav-arrow">→</span>
+                        <div class="nav-icon">📖</div>
+                        <div>
+                            <h3 style="margin: 0 0 0.5rem; color: var(--primary-color);">品牌故事</h3>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">了解我们的初心与使命</p>
+                        </div>
                     </a>
                     
                     <a href="about/team.html" class="nav-card">
-                        <div class="card-icon">👥</div>
-                        <h3>团队介绍</h3>
-                        <p>认识智脑君专家网络</p>
-                        <span class="nav-arrow">→</span>
+                        <div class="nav-icon">👥</div>
+                        <div>
+                            <h3 style="margin: 0 0 0.5rem; color: var(--primary-color);">团队介绍</h3>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">认识智脑君专家网络</p>
+                        </div>
                     </a>
                     
                     <a href="about/partners.html" class="nav-card">
-                        <div class="card-icon">🤝</div>
-                        <h3>合作伙伴</h3>
-                        <p>与优秀伙伴共创价值</p>
-                        <span class="nav-arrow">→</span>
+                        <div class="nav-icon">🤝</div>
+                        <div>
+                            <h3 style="margin: 0 0 0.5rem; color: var(--primary-color);">合作伙伴</h3>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">与优秀伙伴共创价值</p>
+                        </div>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- 品牌概述 -->
-        <section class="brand-overview">
+        <section class="value-showcase">
             <div class="container">
-                <div class="overview-content">
-                    <div class="overview-text">
-                        <h2>水泥安环智脑 - 数字化安全的新范式</h2>
-                        <p>我们诞生于一个简单的洞察：<strong>水泥行业的安全生产管理，需要的不仅是技术工具，更需要深度融合工艺理解的智慧。</strong></p>
-                        <p>在水泥行业数字化转型浪潮中，我们观察到很多企业投入了大量资源，却未获得预期效果。核心原因在于：数字化方案与水泥工艺、安全管理的融合深度不够。</p>
-                        
-                        <div class="key-points">
-                            <div class="key-point">
-                                <h4>❌ 传统问题</h4>
-                                <p>方案提供商不懂水泥工艺，软件功能与真实场景脱节</p>
-                            </div>
-                            <div class="key-point">
-                                <h4>✅ 我们的解法</h4>
-                                <p>从工艺安全风险出发，设计真正能解决问题的数字化路径</p>
+                <div class="visual-card" style="max-width: 900px; margin: 0 auto;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                        <div>
+                            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 2.2rem;">水泥安环智脑 - 数字化安全的新范式</h2>
+                            <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1.5rem;">我们诞生于一个简单的洞察：<strong style="color: var(--secondary-color);">水泥行业的安全生产管理，需要的不仅是技术工具，更需要深度融合工艺理解的智慧。</strong></p>
+                            <p style="color: var(--text-color); line-height: 1.8;">在数字化转型浪潮中，我们观察到很多企业投入了大量资源，却未获得预期效果。核心原因在于：数字化方案与水泥工艺、安全管理的融合深度不够。</p>
+                        </div>
+                        <div>
+                            <div class="icon-card" style="background: linear-gradient(135deg, #f0f7ff, #e6f2ff); border: 2px dashed var(--primary-color);">
+                                <div class="icon-wrapper">🏭</div>
+                                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">专注水泥行业</h3>
+                                <p style="color: var(--text-color);">深刻理解水泥生产各环节的风险点</p>
                             </div>
                         </div>
-                        
-                        <p>因此，我们创立了"水泥安环智脑" - 一个专注水泥行业安全生产数字化的第三方智慧服务平台。</p>
-                    </div>
-                    
-                    <div class="overview-image">
-                        <img src="images/about/overview-visual.png" alt="水泥厂数字化转型示意图">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 我们的价值观 -->
-        <section class="our-values">
+        <!-- 核心价值 -->
+        <section style="padding: 5rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
             <div class="container">
-                <h2 class="section-title">我们的核心价值观</h2>
-                <div class="values-grid">
-                    <div class="value-item">
-                        <div class="value-number">01</div>
-                        <h3>独立客观</h3>
-                        <p>与任何软硬件厂商无利益绑定，所有建议只为客户价值负责</p>
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">我们的核心价值观</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">这些价值观指导我们的每一次决策和每一次服务</p>
+                
+                <div class="value-grid">
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #4CAF50, #45a049);">🎯</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">独立客观</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">与任何软硬件厂商无利益绑定，所有建议只为客户价值负责</p>
                     </div>
                     
-                    <div class="value-item">
-                        <div class="value-number">02</div>
-                        <h3>工艺深度</h3>
-                        <p>深刻理解水泥生产各环节的风险点，确保数字化方案精准有效</p>
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #2196F3, #0b7dda);">🏭</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">工艺深度</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">深刻理解水泥生产各环节的风险点，确保数字化方案精准有效</p>
                     </div>
                     
-                    <div class="value-item">
-                        <div class="value-number">03</div>
-                        <h3>结果导向</h3>
-                        <p>不只交付方案，更关注实际落地效果与投资回报</p>
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #FF9800, #e68a00);">💰</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">结果导向</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">不只交付方案，更关注实际落地效果与投资回报</p>
                     </div>
                     
-                    <div class="value-item">
-                        <div class="value-number">04</div>
-                        <h3>持续陪伴</h3>
-                        <p>从规划到实施，再到持续优化，全程提供专业支持</p>
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #9C27B0, #7b1fa2);">🤝</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">持续陪伴</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">从规划到实施，再到持续优化，全程提供专业支持</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 为什么选择我们 -->
-        <section class="why-choose-us">
+        <section class="comparison-section">
             <div class="container">
-                <h2 class="section-title">为什么选择水泥安环智脑？</h2>
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">为什么选择水泥安环智脑？</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">与其他方案提供商的本质区别</p>
                 
                 <div class="comparison-table">
-                    <div class="comparison-header">
-                        <div class="comparison-item">对比维度</div>
-                        <div class="comparison-item">软件厂商</div>
-                        <div class="comparison-item">传统咨询公司</div>
-                        <div class="comparison-item">水泥安环智脑</div>
+                    <div class="table-header">
+                        <div class="table-header-cell">对比维度</div>
+                        <div class="table-header-cell">软件厂商</div>
+                        <div class="table-header-cell">传统咨询公司</div>
+                        <div class="table-header-cell">水泥安环智脑</div>
                     </div>
                     
-                    <div class="comparison-row">
-                        <div class="comparison-dimension">行业理解深度</div>
-                        <div class="comparison-cell">中低（通用方案）</div>
-                        <div class="comparison-cell">中（理论为主）</div>
-                        <div class="comparison-cell highlight">深（水泥工艺专家）</div>
+                    <div class="table-row">
+                        <div class="table-cell feature">行业理解深度</div>
+                        <div class="table-cell">中低（通用方案）</div>
+                        <div class="table-cell">中（理论为主）</div>
+                        <div class="table-cell highlight">深（水泥工艺专家）</div>
                     </div>
                     
-                    <div class="comparison-row">
-                        <div class="comparison-dimension">方案客观性</div>
-                        <div class="comparison-cell">低（推荐自家产品）</div>
-                        <div class="comparison-cell">中（可能受合作方影响）</div>
-                        <div class="comparison-cell highlight">高（完全独立第三方）</div>
+                    <div class="table-row">
+                        <div class="table-cell feature">方案客观性</div>
+                        <div class="table-cell">低（推荐自家产品）</div>
+                        <div class="table-cell">中（可能受合作方影响）</div>
+                        <div class="table-cell highlight">高（完全独立第三方）</div>
                     </div>
                     
-                    <div class="comparison-row">
-                        <div class="comparison-dimension">落地实施支持</div>
-                        <div class="comparison-cell">仅限自家产品</div>
-                        <div class="comparison-cell">方案交付即结束</div>
-                        <div class="comparison-cell highlight">全程陪跑，确保结果</div>
+                    <div class="table-row">
+                        <div class="table-cell feature">落地实施支持</div>
+                        <div class="table-cell">仅限自家产品</div>
+                        <div class="table-cell">方案交付即结束</div>
+                        <div class="table-cell highlight">全程陪跑，确保结果</div>
                     </div>
                     
-                    <div class="comparison-row">
-                        <div class="comparison-dimension">投资回报关注</div>
-                        <div class="comparison-cell">关注软件销售额</div>
-                        <div class="comparison-cell">关注咨询费</div>
-                        <div class="comparison-cell highlight">关注客户ROI</div>
+                    <div class="table-row">
+                        <div class="table-cell feature">投资回报关注</div>
+                        <div class="table-cell">关注软件销售额</div>
+                        <div class="table-cell">关注咨询费</div>
+                        <div class="table-cell highlight">关注客户ROI</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据展示 -->
+        <section class="stats-section">
+            <div class="container">
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">我们的数字</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">用数据证明我们的专业与承诺</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">服务项目</span>
+                    </div>
+                    
+                    <div class="stat-card" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
+                        <span class="stat-number">95%+</span>
+                        <span class="stat-label">客户满意度</span>
+                    </div>
+                    
+                    <div class="stat-card" style="background: linear-gradient(135deg, #2196F3, #0b7dda);">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">平均行业经验</span>
+                    </div>
+                    
+                    <div class="stat-card" style="background: linear-gradient(135deg, #FF9800, #e68a00);">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">项目成功交付</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工作方法论 -->
+        <section style="padding: 5rem 0; background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%); color: white;">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2.5rem;">我们的工作方法论</h2>
+                <p style="text-align: center; opacity: 0.9; max-width: 700px; margin: 0 auto 3rem;">基于《水泥安全数字化成熟度模型》的系统化工作流程</p>
+                
+                <div class="process-steps">
+                    <div class="process-step active">
+                        <div class="step-number">1</div>
+                        <div style="color: white;">
+                            <h3 style="margin: 0 0 0.5rem;">诊断评估</h3>
+                            <p style="opacity: 0.9; margin: 0;">系统评估企业现状，识别核心痛点</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div style="color: white;">
+                            <h3 style="margin: 0 0 0.5rem;">方案设计</h3>
+                            <p style="opacity: 0.9; margin: 0;">设计兼顾可行性与经济性的方案</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div style="color: white;">
+                            <h3 style="margin: 0 0 0.5rem;">实施陪跑</h3>
+                            <p style="opacity: 0.9; margin: 0;">全程专业陪伴，确保项目落地</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div style="color: white;">
+                            <h3 style="margin: 0 0 0.5rem;">持续优化</h3>
+                            <p style="opacity: 0.9; margin: 0;">基于数据反馈，持续改进优化</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA区域 -->
-        <section class="about-cta">
+        <section style="padding: 5rem 0; background: var(--white);">
             <div class="container">
-                <h2>准备好开启您的数字化安全之旅了吗？</h2>
-                <p>与真正懂水泥、懂安全、懂数字化的伙伴一起前行</p>
-                <div class="cta-actions">
-                    <a href="contact.html" class="btn btn-primary btn-large">预约免费初诊</a>
-                    <a href="about/team.html" class="btn btn-secondary btn-large">了解我们的专家团队</a>
+                <div class="visual-card" style="max-width: 800px; margin: 0 auto; text-align: center; background: linear-gradient(135deg, #f0f7ff, #e6f2ff); border: none;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 2.2rem;">准备好开启您的数字化安全之旅了吗？</h2>
+                    <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">与真正懂水泥、懂安全、懂数字化的伙伴一起前行</p>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="contact.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">预约免费初诊</a>
+                        <a href="about/team.html" class="btn btn-secondary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">了解专家团队</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 页脚（复用首页页脚） -->
+    <!-- 页脚 -->
     <footer class="main-footer">
-        <!-- 页脚内容与首页一致 -->
         <div class="footer-container">
             <div class="footer-section">
                 <div class="footer-logo">
@@ -212,9 +373,9 @@
                 </div>
                 <p>专注水泥行业安全生产数字化智慧服务</p>
                 <div class="social-links">
-                    <a href="#" aria-label="微信公众号"><i>📱</i></a>
-                    <a href="#" aria-label="LinkedIn"><i>💼</i></a>
-                    <a href="#" aria-label="知乎"><i>知</i></a>
+                    <a href="#" aria-label="微信公众号">📱</a>
+                    <a href="#" aria-label="LinkedIn">💼</a>
+                    <a href="#" aria-label="知乎">知</a>
                 </div>
             </div>
             
@@ -255,5 +416,58 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // 页面特定脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            // 步骤动画
+            const steps = document.querySelectorAll('.process-step');
+            let currentStep = 0;
+            
+            function animateSteps() {
+                steps.forEach((step, index) => {
+                    step.classList.remove('active');
+                    if (index === currentStep) {
+                        setTimeout(() => {
+                            step.classList.add('active');
+                        }, index * 300);
+                    }
+                });
+                
+                currentStep = (currentStep + 1) % steps.length;
+            }
+            
+            // 初始设置
+            steps[0].classList.add('active');
+            
+            // 每3秒切换一次
+            setInterval(animateSteps, 3000);
+            
+            // 滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有需要动画的元素
+            const animatedElements = document.querySelectorAll('.visual-card, .icon-card, .stat-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>

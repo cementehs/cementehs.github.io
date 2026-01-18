@@ -1,4 +1,4 @@
-/* 关于我们页面专用样式 */
+/* 关于我们页面通用样式 */
 
 /* 页面标题区域 */
 .page-header {
@@ -47,803 +47,185 @@
     color: var(--text-light);
 }
 
-/* 关于我们主页面样式 */
-.about-navigation {
-    padding: 4rem 0;
-}
-
-.nav-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.nav-card {
-    background: var(--white);
-    border: 2px solid var(--light-gray);
-    border-radius: 10px;
-    padding: 2rem;
-    text-decoration: none;
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Hero区域 */
+.hero-section {
+    background: linear-gradient(135deg, rgba(42, 91, 158, 0.9) 0%, rgba(26, 65, 119, 0.9) 100%);
+    color: white;
+    padding: 6rem 0;
     text-align: center;
-    transition: var(--transition);
+    margin-top: 70px;
 }
 
-.nav-card:hover {
-    border-color: var(--primary-color);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.card-icon {
-    font-size: 3rem;
+.hero-title {
+    font-size: 3.5rem;
     margin-bottom: 1rem;
 }
 
-.nav-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.nav-card p {
-    color: var(--text-light);
-    margin-bottom: 1rem;
-    flex-grow: 1;
-}
-
-.nav-arrow {
+.hero-subtitle {
     font-size: 1.5rem;
-    color: var(--secondary-color);
-    transition: var(--transition);
-}
-
-.nav-card:hover .nav-arrow {
-    transform: translateX(5px);
-}
-
-/* 品牌概述 */
-.brand-overview {
-    padding: 4rem 0;
-}
-
-.overview-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.overview-text h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 2.2rem;
-}
-
-.overview-text p {
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-}
-
-.key-points {
-    margin: 2rem 0;
-}
-
-.key-point {
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
-    background: var(--light-gray);
-    border-radius: 8px;
-    border-left: 4px solid var(--secondary-color);
-}
-
-.key-point h4 {
-    margin-bottom: 0.5rem;
-    color: var(--dark-gray);
-}
-
-.overview-image img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-}
-
-/* 价值观 */
-.our-values {
-    padding: 4rem 0;
-    background-color: var(--light-gray);
-}
-
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.value-item {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    position: relative;
-}
-
-.value-number {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    background: var(--secondary-color);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.value-item h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-/* 对比表格 */
-.why-choose-us {
-    padding: 4rem 0;
-}
-
-.comparison-table {
-    background: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    margin-top: 2rem;
-}
-
-.comparison-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    background: var(--primary-color);
-    color: white;
-    font-weight: bold;
-}
-
-.comparison-header .comparison-item {
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.comparison-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    border-bottom: 1px solid #eee;
-}
-
-.comparison-row:last-child {
-    border-bottom: none;
-}
-
-.comparison-dimension {
-    padding: 1.5rem;
-    background: var(--light-gray);
-    font-weight: bold;
-    border-right: 1px solid #ddd;
-}
-
-.comparison-cell {
-    padding: 1.5rem;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.comparison-cell.highlight {
-    background: rgba(245, 124, 0, 0.1);
-    color: var(--secondary-color);
-    font-weight: bold;
-}
-
-/* 品牌故事页面样式 */
-.brand-timeline {
-    padding: 4rem 0;
-}
-
-.timeline {
-    position: relative;
-    max-width: 900px;
-    margin: 4rem auto 0;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 30px;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--primary-color);
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
-    padding-left: 80px;
-}
-
-.timeline-date {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 70px;
-    padding: 0.5rem;
-    background: var(--primary-color);
-    color: white;
-    text-align: center;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.timeline-content {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    border-left: 4px solid var(--secondary-color);
-}
-
-.timeline-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-/* 品牌理念 */
-.brand-philosophy {
-    padding: 4rem 0;
-    background: var(--light-gray);
-}
-
-.philosophy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.philosophy-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-}
-
-.philosophy-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--light-gray);
-}
-
-.philosophy-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.philosophy-card li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-}
-
-.philosophy-card li:last-child {
-    border-bottom: none;
-}
-
-/* 名字由来 */
-.name-origin {
-    padding: 4rem 0;
-}
-
-.origin-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    margin-top: 2rem;
-}
-
-.meaning-item {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.meaning-item h4 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.origin-image img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-}
-
-/* 团队页面样式 */
-.team-overview {
-    padding: 4rem 0;
-}
-
-.team-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    color: var(--text-light);
-    font-size: 0.9rem;
-}
-
-.overview-text {
+    opacity: 0.9;
     max-width: 800px;
-    margin: 2rem auto;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    margin: 0 auto 2rem;
 }
 
-.expertise-areas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
-.expertise-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    border-top: 4px solid var(--primary-color);
-}
-
-.expertise-card h3 {
+/* 章节通用样式 */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
-}
-
-.expertise-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.expertise-card li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-}
-
-.expertise-card li:before {
-    content: "✓";
-    color: var(--secondary-color);
-    margin-right: 10px;
-}
-
-/* 核心成员 */
-.core-members {
-    padding: 4rem 0;
-    background: var(--light-gray);
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--text-light);
     margin-bottom: 3rem;
-    font-style: italic;
+    font-size: 1.1rem;
 }
 
-.members-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.member-card {
+/* 统计区域 */
+.stats-section {
+    padding: 4rem 0;
     background: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    display: flex;
-    transition: var(--transition);
 }
 
-.member-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+/* 价值列表 */
+.value-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
 }
 
-.member-avatar {
-    min-width: 100px;
-    background: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatar-placeholder {
-    color: white;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-.member-info {
-    padding: 1.5rem;
-    flex-grow: 1;
-}
-
-.member-info h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.3rem;
-}
-
-.member-title {
-    color: var(--secondary-color);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-
-.member-expertise {
-    margin: 1rem 0;
-}
-
-.expertise-tag {
-    display: inline-block;
-    background: rgba(42, 91, 158, 0.1);
-    color: var(--primary-color);
-    padding: 0.2rem 0.7rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.member-bio {
-    color: var(--text-light);
-    font-size: 0.9rem;
+.value-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1rem;
     line-height: 1.6;
 }
 
-/* 方法论 */
-.team-methodology {
+.value-list li:last-child {
+    border-bottom: none;
+}
+
+.value-list strong {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+/* 品牌起源区域 */
+.name-origin-section {
     padding: 4rem 0;
+    background: var(--light-gray);
 }
 
-.methodology-steps {
-    max-width: 800px;
-    margin: 3rem auto 0;
+.origin-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
-.method-step {
+.origin-card {
     display: flex;
     align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.origin-card:hover {
+    transform: translateX(10px);
+}
+
+.origin-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.origin-visual {
+    text-align: center;
+}
+
+.brand-avatar {
     margin-bottom: 2rem;
 }
 
-.step-number {
-    min-width: 50px;
-    height: 50px;
-    background: var(--primary-color);
-    color: white;
+.avatar-circle {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-right: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-.step-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-/* 合作伙伴页面样式 */
-.partners-principles {
-    padding: 4rem 0;
-}
-
-.principles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.principle-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    transition: var(--transition);
-}
-
-.principle-card:hover {
-    transform: translateY(-5px);
-}
-
-.principle-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.principle-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.principles-note {
-    margin-top: 3rem;
-    padding: 1.5rem;
-    background: rgba(245, 124, 0, 0.1);
-    border-radius: 8px;
-    border-left: 4px solid var(--secondary-color);
-}
-
-/* 合作伙伴分类 */
-.partners-categories {
-    padding: 4rem 0;
-    background: var(--light-gray);
-}
-
-.categories-tabs {
-    background: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.tab-buttons {
-    display: flex;
-    background: #f5f5f5;
-    border-bottom: 1px solid #ddd;
-    overflow-x: auto;
-}
-
-.tab-btn {
-    padding: 1rem 2rem;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: var(--transition);
-    border-bottom: 3px solid transparent;
-}
-
-.tab-btn.active {
-    background: var(--white);
-    border-bottom-color: var(--primary-color);
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.tab-content {
-    padding: 2rem;
-}
-
-.tab-pane {
-    display: none;
-}
-
-.tab-pane.active {
-    display: block;
-}
-
-.category-intro {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
-}
-
-.partners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.partner-card {
-    display: flex;
-    background: #f9f9f9;
-    border-radius: 8px;
-    overflow: hidden;
-    padding: 1.5rem;
-    transition: var(--transition);
-}
-
-.partner-card:hover {
-    background: #f0f0f0;
-    transform: translateY(-3px);
-}
-
-.partner-logo-placeholder {
-    min-width: 80px;
-    height: 80px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 1.5rem;
-    font-weight: bold;
-}
-
-.partner-info {
-    flex-grow: 1;
-}
-
-.partner-info h4 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.partner-desc {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-/* 合作流程 */
-.cooperation-process {
-    padding: 4rem 0;
-}
-
-.process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.process-step {
-    text-align: center;
-}
-
-.step-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 auto 1rem;
-}
-
-.step-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-/* 成为合作伙伴 */
-.become-partner {
-    padding: 4rem 0;
-    background: var(--light-gray);
-}
-
-.partner-cta {
-    background: var(--white);
-    padding: 3rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    max-width: 800px;
     margin: 0 auto;
-}
-
-.partner-cta h2 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.partner-requirements {
-    text-align: left;
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: #f9f9f9;
-    border-radius: 8px;
-}
-
-.partner-requirements h4 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.partner-requirements ul {
-    list-style: none;
-    padding: 0;
-}
-
-.partner-requirements li {
-    padding: 0.5rem 0;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.partner-requirements li:before {
-    content: "•";
-    color: var(--secondary-color);
-    position: absolute;
-    left: 0;
-    font-size: 1.5rem;
-}
-
-/* 页面导航 */
-.page-navigation {
-    padding: 3rem 0;
-    border-top: 1px solid #eee;
-}
-
-.page-navigation .container {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.avatar-text {
+    font-size: 2.5rem;
+    color: white;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.brand-tagline p {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    font-style: italic;
+    font-weight: 500;
 }
 
 /* CTA区域 */
-.about-cta {
-    padding: 4rem 0;
+.story-cta {
+    padding: 5rem 0;
     background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
     color: white;
     text-align: center;
 }
 
-.about-cta h2 {
+.story-cta h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.about-cta p {
+.story-cta p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
     opacity: 0.9;
+    margin-bottom: 2rem;
 }
 
-.cta-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+/* 团队介绍页面特定样式 */
+.section-intro {
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
 }
 
-.join-us {
-    padding: 4rem 0;
+.join-section {
+    padding: 5rem 0;
     background: linear-gradient(135deg, #1a4177 0%, var(--primary-color) 100%);
     color: white;
 }
@@ -861,77 +243,173 @@
 
 .join-content p {
     font-size: 1.1rem;
-    margin-bottom: 1rem;
     opacity: 0.9;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.join-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.15);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .join-actions {
-    margin-top: 2rem;
     display: flex;
     gap: 1rem;
     justify-content: center;
+    margin-top: 2rem;
+}
+
+/* 合作伙伴页面特定样式 */
+.principles-note {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: rgba(245, 124, 0, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.requirement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.requirement-icon {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.become-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
 }
 
 /* 响应式调整 */
-@media (max-width: 768px) {
-    .page-header h1 {
-        font-size: 2.5rem;
-    }
-    
-    .overview-content,
-    .origin-content {
+@media (max-width: 1024px) {
+    .origin-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
     
-    .comparison-header,
-    .comparison-row {
+    .requirements-grid {
         grid-template-columns: 1fr;
     }
     
-    .comparison-dimension {
-        border-right: none;
-        border-bottom: 1px solid #ddd;
+    .team-stats {
+        grid-template-columns: repeat(2, 1fr);
     }
     
-    .timeline::before {
-        left: 20px;
+    .expertise-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
     }
     
-    .timeline-item {
-        padding-left: 60px;
+    .hero-subtitle {
+        font-size: 1.2rem;
     }
     
-    .timeline-date {
-        width: 50px;
-        font-size: 0.9rem;
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
     }
     
-    .member-card {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .story-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .principles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .partners-showcase {
+        grid-template-columns: 1fr;
+    }
+    
+    .process-steps {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .join-actions,
+    .become-actions {
         flex-direction: column;
     }
     
-    .member-avatar {
-        min-width: 100%;
-        height: 100px;
+    .avatar-circle {
+        width: 150px;
+        height: 150px;
     }
     
-    .page-navigation .container {
-        flex-direction: column;
-        gap: 1rem;
+    .avatar-text {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 2.2rem;
     }
     
-    .tab-buttons {
-        flex-wrap: wrap;
+    .hero-title {
+        font-size: 2rem;
     }
     
-    .tab-btn {
-        flex: 1;
-        min-width: 120px;
+    .section-title {
+        font-size: 1.8rem;
     }
     
-    .cta-actions,
-    .join-actions {
-        flex-direction: column;
+    .team-stats,
+    .story-stats {
+        grid-template-columns: 1fr;
     }
 }

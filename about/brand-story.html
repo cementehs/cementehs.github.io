@@ -3,12 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="水泥安环智脑的品牌故事 - 从行业痛点到智慧解决方案">
     <title>品牌故事 | 水泥安环智脑</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/about-pages.css">
+    <link rel="stylesheet" href="../css/about-pages-new.css">
     <link rel="icon" type="image/x-icon" href="../images/logo/favicon.ico">
+    <style>
+        .story-timeline {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .milestone-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .philosophy-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .philosophy-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .philosophy-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .philosophy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .name-origin-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a4177 100%);
+            color: white;
+        }
+        
+        .origin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .origin-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -24,7 +87,7 @@
             <div class="nav-menu">
                 <ul>
                     <li><a href="../index.html">首页</a></li>
-                    <li><a href="../about.html" class="active">关于我们</a></li>
+                    <li><a href="../about.html">关于我们</a></li>
                     <li><a href="../services.html">核心服务</a></li>
                     <li><a href="../solutions.html">解决方案</a></li>
                     <li><a href="../cases.html">案例与成果</a></li>
@@ -56,87 +119,153 @@
 
     <!-- 主内容区 -->
     <main>
-        <!-- 页面标题 -->
+        <!-- 英雄区域 -->
         <section class="page-header">
             <div class="container">
                 <h1>品牌故事</h1>
-                <p>从行业痛点到智慧解决方案，我们的初心与使命</p>
+                <p class="subtitle">从行业痛点到智慧解决方案，我们的初心与使命</p>
             </div>
         </section>
 
         <!-- 品牌历程时间线 -->
-        <section class="brand-timeline">
+        <section class="story-timeline">
             <div class="container">
-                <h2 class="section-title">品牌历程</h2>
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">品牌历程</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">见证我们从洞察到实践，从理念到品牌的成长之路</p>
                 
-                <div class="timeline">
+                <div class="timeline-container">
                     <div class="timeline-item">
-                        <div class="timeline-date">2020年</div>
-                        <div class="timeline-content">
-                            <h3>诞生：一个关键洞察</h3>
-                            <p>在对多个水泥企业进行安全数字化调研时，我们发现一个共性现象：<strong>企业投入了大量资金采购各类安全管理系统，但实际使用效果却远低于预期。</strong></p>
-                            <p>深层原因：软件厂商不懂水泥工艺，安全部门不熟悉数字化技术，导致系统与实际业务"两张皮"。</p>
+                        <div class="timeline-dot"></div>
+                        <div class="visual-card">
+                            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div style="background: linear-gradient(135deg, var(--primary-color), #1a4177); color: white; padding: 0.8rem 1.5rem; border-radius: 20px; font-weight: bold;">2020年</div>
+                                <h3 style="margin: 0; color: var(--primary-color);">诞生：一个关键洞察</h3>
+                            </div>
+                            <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1rem;">在对多个水泥企业进行安全数字化调研时，我们发现一个共性现象：<strong style="color: var(--secondary-color);">企业投入了大量资金采购各类安全管理系统，但实际使用效果却远低于预期。</strong></p>
+                            <p style="color: var(--text-color); line-height: 1.8;">深层原因：软件厂商不懂水泥工艺，安全部门不熟悉数字化技术，导致系统与实际业务"两张皮"。</p>
                         </div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-date">2021年</div>
-                        <div class="timeline-content">
-                            <h3>探索：从解决一个问题开始</h3>
-                            <p>我们与华南某水泥集团合作，针对"有限空间作业监管"这一痛点，设计了一套结合工艺特点的数字化解决方案。</p>
-                            <p>结果：不仅实现了预期的安全目标，还将作业效率提升了40%。<strong>这验证了"工艺+数字化"融合的巨大潜力。</strong></p>
+                        <div class="timeline-dot"></div>
+                        <div class="visual-card">
+                            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 0.8rem 1.5rem; border-radius: 20px; font-weight: bold;">2021年</div>
+                                <h3 style="margin: 0; color: var(--primary-color);">探索：从解决一个问题开始</h3>
+                            </div>
+                            <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1rem;">我们与华南某水泥集团合作，针对"有限空间作业监管"这一痛点，设计了一套结合工艺特点的数字化解决方案。</p>
+                            <div style="background: rgba(76, 175, 80, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #4CAF50; margin-top: 1rem;">
+                                <p style="margin: 0; color: var(--text-color);"><strong>结果：</strong>不仅实现了预期的安全目标，还将作业效率提升了40%。这验证了"工艺+数字化"融合的巨大潜力。</p>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-date">2022年</div>
-                        <div class="timeline-content">
-                            <h3>聚焦：确立核心定位</h3>
-                            <p>经过多个项目的实践，我们明确了自己的独特价值：<strong>作为独立第三方，专注于水泥行业安全生产数字化的规划与落地。</strong></p>
-                            <p>我们决定不销售任何软件，而是成为企业的"智慧外脑"，帮助客户在数字化浪潮中做出明智决策。</p>
+                        <div class="timeline-dot"></div>
+                        <div class="visual-card">
+                            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div style="background: linear-gradient(135deg, #2196F3, #0b7dda); color: white; padding: 0.8rem 1.5rem; border-radius: 20px; font-weight: bold;">2022年</div>
+                                <h3 style="margin: 0; color: var(--primary-color);">聚焦：确立核心定位</h3>
+                            </div>
+                            <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1rem;">经过多个项目的实践，我们明确了自己的独特价值：<strong style="color: var(--secondary-color);">作为独立第三方，专注于水泥行业安全生产数字化的规划与落地。</strong></p>
+                            <p style="color: var(--text-color); line-height: 1.8;">我们决定不销售任何软件，而是成为企业的"智慧外脑"，帮助客户在数字化浪潮中做出明智决策。</p>
                         </div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-date">2023年</div>
-                        <div class="timeline-content">
-                            <h3>成熟：构建智慧网络</h3>
-                            <p>随着服务案例的积累，我们构建了"智脑君专家网络" - 整合了水泥工艺专家、安全专家、数字化专家的能力。</p>
-                            <p>同时，我们沉淀了<strong>《水泥安全数字化成熟度模型》</strong>等一系列方法论工具，形成了可复制、可验证的服务体系。</p>
+                        <div class="timeline-dot"></div>
+                        <div class="visual-card">
+                            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div style="background: linear-gradient(135deg, #FF9800, #e68a00); color: white; padding: 0.8rem 1.5rem; border-radius: 20px; font-weight: bold;">2023年</div>
+                                <h3 style="margin: 0; color: var(--primary-color);">成熟：构建智慧网络</h3>
+                            </div>
+                            <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1rem;">随着服务案例的积累，我们构建了"智脑君专家网络" - 整合了水泥工艺专家、安全专家、数字化专家的能力。</p>
+                            <p style="color: var(--text-color); line-height: 1.8;">同时，我们沉淀了<strong style="color: var(--secondary-color);">《水泥安全数字化成熟度模型》</strong>等一系列方法论工具，形成了可复制、可验证的服务体系。</p>
                         </div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-date">至今</div>
-                        <div class="timeline-content">
-                            <h3>展望：引领行业变革</h3>
-                            <p>我们已经成为多家大型水泥集团的数字化转型伙伴，并开始通过内容平台"水泥安环智脑公众号"分享行业洞察，推动整个行业的进步。</p>
-                            <p><strong>我们的愿景：成为水泥行业安全生产数字化领域最值得信赖的智慧品牌。</strong></p>
+                        <div class="timeline-dot"></div>
+                        <div class="visual-card">
+                            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div style="background: linear-gradient(135deg, #9C27B0, #7b1fa2); color: white; padding: 0.8rem 1.5rem; border-radius: 20px; font-weight: bold;">至今</div>
+                                <h3 style="margin: 0; color: var(--primary-color);">展望：引领行业变革</h3>
+                            </div>
+                            <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1rem;">我们已经成为多家大型水泥集团的数字化转型伙伴，并开始通过内容平台"水泥安环智脑公众号"分享行业洞察，推动整个行业的进步。</p>
+                            <div style="background: rgba(42, 91, 158, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-color); margin-top: 1rem;">
+                                <p style="margin: 0; color: var(--text-color);"><strong>我们的愿景：</strong>成为水泥行业安全生产数字化领域最值得信赖的智慧品牌。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 品牌理念 -->
-        <section class="brand-philosophy">
+        <!-- 里程碑展示 -->
+        <section class="milestone-section">
             <div class="container">
-                <div class="philosophy-grid">
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">关键里程碑</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">我们发展历程中的重要节点</p>
+                
+                <div class="milestone-grid">
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #4CAF50, #45a049);">📈</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">首个成功案例</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">有限空间作业数字化项目，实现安全与效率双提升</p>
+                    </div>
+                    
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #2196F3, #0b7dda);">🏆</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">方法论成型</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">发布《水泥安全数字化成熟度模型》</p>
+                    </div>
+                    
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #FF9800, #e68a00);">👥</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">专家网络建立</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">汇聚工艺、安全、数字化三领域专家</p>
+                    </div>
+                    
+                    <div class="icon-card">
+                        <div class="icon-wrapper" style="background: linear-gradient(135deg, #9C27B0, #7b1fa2);">🚀</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">品牌影响力</h3>
+                        <p style="color: var(--text-color); line-height: 1.6;">成为水泥行业数字化咨询首选品牌</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 品牌理念 -->
+        <section class="philosophy-section">
+            <div class="container">
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem;">品牌理念</h2>
+                <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">指引我们前行的核心价值观</p>
+                
+                <div class="philosophy-cards">
                     <div class="philosophy-card">
-                        <h3>我们的使命</h3>
-                        <p><strong>"让水泥厂的高风险作业可知、可防、可控"</strong></p>
-                        <p>通过数字化手段，将安全从被动应对转变为主动预防，保护每一位一线工人的生命安全。</p>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary-color), #1a4177); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">🎯</div>
+                            <h3 style="margin: 0; color: var(--primary-color);">我们的使命</h3>
+                        </div>
+                        <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1rem;"><strong style="color: var(--secondary-color); font-size: 1.1rem;">"让水泥厂的高风险作业可知、可防、可控"</strong></p>
+                        <p style="color: var(--text-color); line-height: 1.8;">通过数字化手段，将安全从被动应对转变为主动预防，保护每一位一线工人的生命安全。</p>
                     </div>
                     
                     <div class="philosophy-card">
-                        <h3>我们的愿景</h3>
-                        <p><strong>"成为水泥行业安全生产数字化转型的首选智慧伙伴"</strong></p>
-                        <p>不仅服务企业，更要通过我们的实践，为整个行业探索出一条安全、高效、经济的数字化路径。</p>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #4CAF50, #45a049); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">🌟</div>
+                            <h3 style="margin: 0; color: var(--primary-color);">我们的愿景</h3>
+                        </div>
+                        <p style="color: var(--text-color); line-height: 1.8; margin-bottom: 1rem;"><strong style="color: var(--secondary-color); font-size: 1.1rem;">"成为水泥行业安全生产数字化转型的首选智慧伙伴"</strong></p>
+                        <p style="color: var(--text-color); line-height: 1.8;">不仅服务企业，更要通过我们的实践，为整个行业探索出一条安全、高效、经济的数字化路径。</p>
                     </div>
                     
                     <div class="philosophy-card">
-                        <h3>我们的价值观</h3>
-                        <ul>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #2196F3, #0b7dda); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">💎</div>
+                            <h3 style="margin: 0; color: var(--primary-color);">我们的价值观</h3>
+                        </div>
+                        <ul style="color: var(--text-color); padding-left: 1.2rem; margin: 0; line-height: 1.8;">
                             <li><strong>专业</strong>：深耕水泥，理解每一个风险点</li>
                             <li><strong>客观</strong>：独立判断，不为任何产品站台</li>
                             <li><strong>务实</strong>：关注实际效果，不追逐概念</li>
@@ -148,49 +277,56 @@
         </section>
 
         <!-- "智脑君"名字的由来 -->
-        <section class="name-origin">
+        <section class="name-origin-section">
             <div class="container">
-                <h2 class="section-title">为什么叫"智脑君"？</h2>
+                <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2.5rem;">为什么叫"智脑君"？</h2>
+                <p style="text-align: center; opacity: 0.9; max-width: 700px; margin: 0 auto 3rem;">这个名字承载着我们的核心价值主张</p>
                 
-                <div class="origin-content">
-                    <div class="origin-text">
-                        <p>"智脑君"这个名字承载着我们的核心价值主张：</p>
-                        
-                        <div class="meaning-item">
-                            <h4>🧠 <strong>"智脑"</strong> - 智慧大脑</h4>
-                            <p>代表我们不是简单的技术服务商，而是<strong>融合了行业知识、技术理解和实战经验的智慧系统</strong>。我们提供的不是"产品"，而是"思考与决策能力"。</p>
+                <div class="origin-grid">
+                    <div class="origin-item">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🧠</div>
+                            <h3 style="margin: 0; color: white; font-size: 1.3rem;">"智脑" - 智慧大脑</h3>
                         </div>
-                        
-                        <div class="meaning-item">
-                            <h4>👨‍💼 <strong>"君"</strong> - 值得信赖的伙伴</h4>
-                            <p>在中文语境中，"君"代表尊敬与信赖。我们希望成为客户<strong>可以托付信任的专业伙伴</strong>，而非一次性交易的服务商。</p>
-                        </div>
-                        
-                        <div class="meaning-item">
-                            <h4>🔗 <strong>完整的品牌寓意</strong></h4>
-                            <p>"智脑君" = <strong>您的水泥厂数字化"智慧大脑" + 值得信赖的"长期伙伴"</strong>，这正是我们服务的本质。</p>
-                        </div>
+                        <p style="opacity: 0.9; margin: 0; line-height: 1.8;">代表我们不是简单的技术服务商，而是<strong>融合了行业知识、技术理解和实战经验的智慧系统</strong>。我们提供的不是"产品"，而是"思考与决策能力"。</p>
                     </div>
                     
-                    <div class="origin-image">
-                        <img src="../images/about/name-origin.png" alt="智脑君品牌寓意示意图">
+                    <div class="origin-item">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">👨‍💼</div>
+                            <h3 style="margin: 0; color: white; font-size: 1.3rem;">"君" - 值得信赖的伙伴</h3>
+                        </div>
+                        <p style="opacity: 0.9; margin: 0; line-height: 1.8;">在中文语境中，"君"代表尊敬与信赖。我们希望成为客户<strong>可以托付信任的专业伙伴</strong>，而非一次性交易的服务商。</p>
+                    </div>
+                    
+                    <div class="origin-item">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🔗</div>
+                            <h3 style="margin: 0; color: white; font-size: 1.3rem;">完整的品牌寓意</h3>
+                        </div>
+                        <p style="opacity: 0.9; margin: 0; line-height: 1.8;">"智脑君" = <strong>您的水泥厂数字化"智慧大脑" + 值得信赖的"长期伙伴"</strong>，这正是我们服务的本质。</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 返回导航 -->
-        <section class="page-navigation">
+        <section style="padding: 3rem 0; background: var(--white); border-top: 1px solid var(--medium-gray);">
             <div class="container">
-                <a href="../about.html" class="btn btn-secondary">← 返回关于我们</a>
-                <a href="team.html" class="btn btn-primary">了解我们的团队 →</a>
+                <div style="display: flex; justify-content: center; gap: 1.5rem;">
+                    <a href="../about.html" class="btn btn-secondary" style="padding: 0.8rem 2rem;">
+                        ← 返回关于我们
+                    </a>
+                    <a href="team.html" class="btn btn-primary" style="padding: 0.8rem 2rem;">
+                        了解我们的团队 →
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- 页脚 -->
     <footer class="main-footer">
-        <!-- 页脚内容与首页一致 -->
         <div class="footer-container">
             <div class="footer-section">
                 <div class="footer-logo">
@@ -199,9 +335,9 @@
                 </div>
                 <p>专注水泥行业安全生产数字化智慧服务</p>
                 <div class="social-links">
-                    <a href="#" aria-label="微信公众号"><i>📱</i></a>
-                    <a href="#" aria-label="LinkedIn"><i>💼</i></a>
-                    <a href="#" aria-label="知乎"><i>知</i></a>
+                    <a href="#" aria-label="微信公众号">📱</a>
+                    <a href="#" aria-label="LinkedIn">💼</a>
+                    <a href="#" aria-label="知乎">知</a>
                 </div>
             </div>
             
@@ -242,5 +378,45 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // 时间线动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            timelineItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+            
+            // 卡片悬停效果
+            const cards = document.querySelectorAll('.philosophy-card, .origin-item');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
