@@ -1,5 +1,7 @@
 // 联系我们页面功能
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('=== contact.js 加载 ===');
+    
     // 联系选项切换
     const optionButtons = document.querySelectorAll('.option-card .btn');
     const contactForms = document.querySelectorAll('.contact-form');
@@ -90,13 +92,233 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 表单提交处理
-    const forms = document.querySelectorAll('#consultation-form-content, #wechat-form-content, #partnership-form-content, #other-form-content');
-    const successModal = document.getElementById('success-modal');
-    const modalClose = document.querySelectorAll('.modal-close');
-    const closeSuccessModal = document.getElementById('close-success-modal');
+    const forms = document.querySelectorAll('form[id$="-content"]');
+    console.log('找到的表单数量:', forms.length);
     
-    // 成功消息配置
-    const successMessages = {
+    // 为每个表单添加提交事件
+    forms.forEach(form => {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            console.log('=== 表单提交开始 ===');
+            console.log('表单ID:', this.id);
+            
+            // 1. 获取表单类型
+            let formType = '';
+            if (this.id.includes('consultation')) {
+                formType = 'consultation';
+            } else if (this.id.includes('wechat')) {
+                formType = 'wechat';
+            } else if (this.id.includes('partnership')) {
+                formType = 'partnership';
+            } else if (this.id.includes('other')) {
+                formType = 'other';
+            }
+            
+            console.log('表单类型:', formType);
+            
+            // 2. 获取表单数据
+            const formData = getFormData(this, formType);
+            console.log('提取的表单数据:', formData);
+            
+            // 3. 验证表单数据
+            const isValid = validateFormData(formData, formType);
+            if (!isValid) {
+                return;
+            }
+            
+            // 4. 显示加载状态
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '提交中...';
+            submitBtn.disabled = true;
+            
+            try {
+                console.log('开始保存数据...');
+                
+                // 5. 保存到 localStorage
+                const savedData = saveFormData(formData, formType);
+                console.log('✅ 数据已保存:', savedData);
+                
+                // 6. 显示成功消息
+                console.log('显示成功消息...');
+                showSuccessMessage(formType);
+                
+                // 7. 重置表单
+                console.log('重置表单...');
+                this.reset();
+                
+                // 8. 验证保存
+                setTimeout(() => {
+                    const stored = localStorage.getItem('cement_submissions');
+                    const data = stored ? JSON.parse(stored) : [];
+                    console.log('✅ 验证保存: 当前有', data.length, '条数据');
+                    
+                    if (data.length > 0) {
+                        console.log('最后一条数据:', data[data.length - 1]);
+                    }
+                }, 500);
+                
+            } catch (error) {
+                console.error('提交错误:', error);
+                alert('提交失败，请稍后重试');
+            } finally {
+                // 恢复按钮状态
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    });
+    
+    // 模态框关闭事件
+    const closeSuccessModal = document.getElementById('close-success-modal');
+    const successModal = document.getElementById('success-modal');
+    
+    function closeModal() {
+        if (successModal) {
+            successModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    if (closeSuccessModal) {
+        closeSuccessModal.addEventListener('click', closeModal);
+    }
+    
+    // 点击模态框外部关闭
+    if (successModal) {
+        successModal.addEventListener('click', function(e) {
+            if (e.target === successModal) {
+                closeModal();
+            }
+        });
+    }
+    
+    // 关闭按钮
+    const modalClose = document.querySelectorAll('.modal-close');
+    modalClose.forEach(btn => {
+        btn.addEventListener('click', closeModal);
+    });
+});
+
+// ========== 工具函数 ==========
+
+// 获取表单数据
+function getFormData(form, formType) {
+    console.log('=== 开始提取表单数据 ===');
+    console.log('表单类型:', formType);
+    
+    const formData = {};
+    
+    // 表单类型到字段前缀的映射
+    const prefixMap = {
+        'consultation': 'consult',
+        'wechat': 'wechat',
+        'partnership': 'partner',
+        'other': 'other'
+    };
+    
+    const prefix = prefixMap[formType] || '';
+    console.log('字段前缀:', prefix);
+    
+    // 收集所有表单字段
+    const inputs = form.querySelectorAll('input, select, textarea');
+    console.log('找到的输入字段数量:', inputs.length);
+    
+    inputs.forEach((input, index) => {
+        const originalId = input.id;
+        let key = originalId;
+        let value;
+        
+        // 获取值
+        if (input.type === 'checkbox') {
+            value = input.checked;
+        } else if (input.type === 'select-one') {
+            value = input.value;
+        } else {
+            value = input.value.trim();
+        }
+        
+        // 如果键以表单前缀开头，去掉前缀
+        if (prefix && key.startsWith(prefix + '-')) {
+            key = key.substring(prefix.length + 1);
+        }
+        
+        // 保存到 formData
+        formData[key] = value;
+    });
+    
+    console.log('最终提取的数据:', formData);
+    return formData;
+}
+
+// 验证表单数据
+function validateFormData(formData, formType) {
+    console.log('=== 验证表单数据 ===');
+    
+    // 根据表单类型确定必填字段
+    const requiredFields = getRequiredFieldsByType(formType);
+    console.log('必填字段:', requiredFields);
+    
+    const missingFields = [];
+    
+    // 检查必填字段
+    requiredFields.forEach(field => {
+        const value = formData[field];
+        if (!value || value === '' || value === false) {
+            missingFields.push(field);
+        }
+    });
+    
+    if (missingFields.length > 0) {
+        console.error('缺少必要字段:', missingFields);
+        alert(`请填写以下必填字段：${missingFields.join(', ')}`);
+        return false;
+    }
+    
+    // 验证邮箱格式
+    if (formData.email && !isValidEmail(formData.email)) {
+        alert('请输入有效的邮箱地址');
+        return false;
+    }
+    
+    console.log('✅ 表单数据验证通过');
+    return true;
+}
+
+// 根据表单类型获取必填字段
+function getRequiredFieldsByType(formType) {
+    const requiredMap = {
+        'consultation': ['name', 'position', 'company', 'industry', 'email', 'phone', 'service', 'needs', 'time', 'terms'],
+        'wechat': ['name', 'company', 'industry', 'purpose', 'terms'],
+        'partnership': ['name', 'position', 'company', 'type', 'email', 'phone', 'cooperation', 'description', 'terms'],
+        'other': ['name', 'email', 'category', 'subject', 'content', 'terms']
+    };
+    
+    return requiredMap[formType] || [];
+}
+
+// 验证邮箱格式
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// 显示成功消息
+function showSuccessMessage(formType) {
+    console.log('显示成功消息，类型:', formType);
+    
+    const successModal = document.getElementById('success-modal');
+    const successTitle = document.getElementById('success-title');
+    const successMessage = document.getElementById('success-message');
+    
+    if (!successModal || !successTitle || !successMessage) {
+        console.error('成功模态框元素未找到');
+        alert('提交成功！');
+        return;
+    }
+    
+    const messages = {
         'consultation': {
             title: '预约提交成功！',
             message: '我们将在24小时内与您确认咨询时间，请保持电话和邮箱畅通。'
@@ -115,246 +337,108 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // 表单验证函数
-    function validateForm(form) {
-        const requiredFields = form.querySelectorAll('[required]');
-        let isValid = true;
-        
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.style.borderColor = 'red';
-                
-                // 添加错误提示
-                let errorMsg = field.parentNode.querySelector('.error-message');
-                if (!errorMsg) {
-                    errorMsg = document.createElement('div');
-                    errorMsg.className = 'error-message';
-                    errorMsg.style.color = 'red';
-                    errorMsg.style.fontSize = '0.8rem';
-                    errorMsg.style.marginTop = '5px';
-                    field.parentNode.appendChild(errorMsg);
-                }
-                errorMsg.textContent = '此字段为必填项';
-            } else {
-                field.style.borderColor = '';
-                const errorMsg = field.parentNode.querySelector('.error-message');
-                if (errorMsg) errorMsg.textContent = '';
-                
-                // 邮箱格式验证
-                if (field.type === 'email' && !isValidEmail(field.value)) {
-                    isValid = false;
-                    field.style.borderColor = 'red';
-                    
-                    let errorMsg = field.parentNode.querySelector('.error-message');
-                    if (!errorMsg) {
-                        errorMsg = document.createElement('div');
-                        errorMsg.className = 'error-message';
-                        errorMsg.style.color = 'red';
-                        errorMsg.style.fontSize = '0.8rem';
-                        errorMsg.style.marginTop = '5px';
-                        field.parentNode.appendChild(errorMsg);
-                    }
-                    errorMsg.textContent = '请输入有效的邮箱地址';
-                }
-                
-                // 网址格式验证
-                if (field.type === 'url' && field.value && !isValidUrl(field.value)) {
-                    isValid = false;
-                    field.style.borderColor = 'red';
-                    
-                    let errorMsg = field.parentNode.querySelector('.error-message');
-                    if (!errorMsg) {
-                        errorMsg = document.createElement('div');
-                        errorMsg.className = 'error-message';
-                        errorMsg.style.color = 'red';
-                        errorMsg.style.fontSize = '0.8rem';
-                        errorMsg.style.marginTop = '5px';
-                        field.parentNode.appendChild(errorMsg);
-                    }
-                    errorMsg.textContent = '请输入有效的网址';
-                }
-            }
-        });
-        
-        return isValid;
-    }
-    
-    // 邮箱格式验证
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    // 网址格式验证
-    function isValidUrl(url) {
-        try {
-            new URL(url);
-            return true;
-        } catch (_) {
-            return false;
-        }
-    }
-    
-    // 为每个表单添加提交事件
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm(this)) {
-                // 获取表单类型
-                let formType = '';
-                if (this.id.includes('consultation')) {
-                    formType = 'consultation';
-                } else if (this.id.includes('wechat')) {
-                    formType = 'wechat';
-                } else if (this.id.includes('partnership')) {
-                    formType = 'partnership';
-                } else if (this.id.includes('other')) {
-                    formType = 'other';
-                }
-                
-                // 获取表单数据
-                const formData = getFormData(this, formType);
-                
-                // 显示成功消息
-                showSuccessMessage(formType);
-                
-                // 重置表单
-                this.reset();
-                
-                // 在实际应用中，这里应该发送数据到服务器
-                console.log('表单提交数据:', formData);
-                
-                // 模拟API调用
-                simulateApiCall(formData);
-            }
-        });
-    });
-    
-    // 获取表单数据
-    function getFormData(form, formType) {
-        const formData = {
-            type: formType,
-            timestamp: new Date().toISOString()
-        };
-        
-        // 收集所有表单字段
-        const inputs = form.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-            if (input.name || input.id) {
-                const key = input.name || input.id;
-                const value = input.type === 'checkbox' ? input.checked : input.value;
-                formData[key] = value;
-            }
-        });
-        
-        return formData;
-    }
-    
-    // 显示成功消息
-    function showSuccessMessage(formType) {
-        const successTitle = document.getElementById('success-title');
-        const successMessage = document.getElementById('success-message');
-        
-        if (successMessages[formType]) {
-            successTitle.textContent = successMessages[formType].title;
-            successMessage.textContent = successMessages[formType].message;
-        } else {
-            successTitle.textContent = '提交成功！';
-            successMessage.textContent = '我们将在24小时内与您联系，请保持电话和邮箱畅通。';
-        }
-        
-        successModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-    
-    // 关闭模态框
-    if (modalClose) {
-        modalClose.forEach(button => {
-            button.addEventListener('click', function() {
-                const modal = this.closest('.modal');
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-        });
-    }
-    
-    if (closeSuccessModal) {
-        closeSuccessModal.addEventListener('click', function() {
-            successModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-    }
-    
-    // 点击模态框外部关闭
-    successModal.addEventListener('click', function(e) {
-        if (e.target === successModal) {
-            successModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-    
-    // 模拟API调用
-    function simulateApiCall(formData) {
-        // 这里可以添加实际的API调用
-        // 目前只是模拟
-        setTimeout(() => {
-            console.log('API调用成功，数据已保存:', formData);
-        }, 1000);
-    }
-    
-    // URL参数处理
-    const urlParams = new URLSearchParams(window.location.search);
-    const typeParam = urlParams.get('type');
-    
-    // 处理类型参数
-    if (typeParam && ['consultation', 'wechat', 'partnership', 'other'].includes(typeParam)) {
-        showContactForm(typeParam);
-    }
-    
-    // 服务参数处理（用于从其他页面跳转）
-    const serviceParam = urlParams.get('service');
-    if (serviceParam && ['diagnosis', 'selection', 'implementation', 'advisory', 'all'].includes(serviceParam)) {
-        // 显示预约咨询表单
-        showContactForm('consultation');
-        
-        // 设置服务选择
-        setTimeout(() => {
-            const serviceSelect = document.getElementById('consult-service');
-            if (serviceSelect) {
-                serviceSelect.value = serviceParam;
-            }
-        }, 500);
-    }
-    
-    // 动画效果
-    const optionCardsAnimated = document.querySelectorAll('.option-card');
-    
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+    const msg = messages[formType] || {
+        title: '提交成功！',
+        message: '我们将在24小时内与您联系，请保持电话和邮箱畅通。'
     };
     
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // 延迟显示，创建交错效果
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, index * 100);
-                
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    successTitle.textContent = msg.title;
+    successMessage.textContent = msg.message;
     
-    // 初始设置和观察
-    optionCardsAnimated.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(card);
-    });
-});
+    successModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    console.log('✅ 成功消息已显示');
+}
+
+// 保存数据到 localStorage
+// 修改 saveFormData 函数，确保字段名标准化
+function saveFormData(formData, formType) {
+    console.log('=== 保存数据到 localStorage ===');
+    
+    // 创建标准化的数据对象
+    const submission = {
+        id: Date.now(),
+        type: formType,
+        timestamp: new Date().toLocaleString('zh-CN'),
+        status: 'pending',
+        ...formData  // 这里包含的是去掉前缀的字段名
+    };
+    
+    console.log('要保存的数据（标准化后）:', submission);
+    
+    // 获取现有数据
+    const storageKey = 'cement_submissions';
+    let existingData = [];
+    
+    try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+            existingData = JSON.parse(stored);
+            console.log('现有数据量:', existingData.length);
+        }
+    } catch (error) {
+        console.error('解析现有数据失败:', error);
+        existingData = [];
+    }
+    
+    // 添加新数据
+    existingData.push(submission);
+    
+    // 保存到 localStorage
+    try {
+        localStorage.setItem(storageKey, JSON.stringify(existingData));
+        console.log(`✅ 数据已保存，总数据量: ${existingData.length}`);
+        
+        // 同时保存一个备份，保持原始字段名
+        saveBackupData(formData, formType, submission.id);
+        
+        return submission;
+    } catch (error) {
+        console.error('保存到 localStorage 失败:', error);
+        throw error;
+    }
+}
+
+// 保存备份数据（包含原始字段名）
+function saveBackupData(formData, formType, id) {
+    const backupKey = 'cement_submissions_raw';
+    let backupData = [];
+    
+    try {
+        const stored = localStorage.getItem(backupKey);
+        if (stored) {
+            backupData = JSON.parse(stored);
+        }
+    } catch (error) {
+        console.error('解析备份数据失败:', error);
+        backupData = [];
+    }
+    
+    // 保存原始表单数据（带前缀）
+    const rawData = {
+        id: id,
+        type: formType,
+        timestamp: new Date().toLocaleString('zh-CN'),
+        ...formData
+    };
+    
+    backupData.push(rawData);
+    localStorage.setItem(backupKey, JSON.stringify(backupData));
+}
+
+// 调试函数
+function debugCheckStorage() {
+    console.log('=== 检查 localStorage ===');
+    const data = localStorage.getItem('cement_submissions');
+    if (data) {
+        const parsed = JSON.parse(data);
+        console.log(`存储的数据量: ${parsed.length} 条`);
+        console.log('最新数据:', parsed[parsed.length - 1]);
+    } else {
+        console.log('没有存储数据');
+    }
+}
+
+// 确保函数在全局可用
+window.debugCheckStorage = debugCheckStorage;

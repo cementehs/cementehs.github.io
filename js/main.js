@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 表单提交处理
+    /*
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
         form.addEventListener('submit', function(e) {
@@ -94,7 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+    */
+   
     // 滚动时显示/隐藏导航栏
     let lastScrollTop = 0;
     const navbar = document.querySelector('.main-nav');

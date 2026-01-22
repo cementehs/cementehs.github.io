@@ -187,7 +187,7 @@
                         <p>填写以下信息，预约30分钟免费视频/电话咨询</p>
                     </div>
                     
-                    <form id="consultation-form-content">
+                    <form id="consultation-form-content" novalidate>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="consult-name">姓名 *</label>
@@ -288,12 +288,15 @@
                             <div class="wechat-qr-placeholder">
                                 <div class="qr-code">
                                     <div class="qr-image">
-                                        <!-- 这里可以放置微信二维码图片 -->
-                                        <div class="qr-placeholder">微信二维码</div>
+                                        <!-- 替换为真实的微信二维码图片 -->
+                                        <img src="images/contact/wechat-qr-code.png" 
+                                             alt="水泥安环智脑官方微信二维码" 
+                                             title="扫描添加水泥安环智脑微信">
                                     </div>
                                     <div class="qr-text">
                                         <p>扫描二维码添加"智脑君"微信</p>
-                                        <p class="qr-note">或搜索微信号: CementEHS_Brain</p>
+                                        <p class="qr-note">或搜索微信号: <strong>AnHuan_ZhiNao</strong></p>
+                                        <p class="qr-tip">添加时请备注：公司+姓名</p>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +313,7 @@
                             </div>
                         </div>
                         
-                        <form id="wechat-form-content">
+                        <form id="wechat-form-content" novalidate>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="wechat-name">姓名 *</label>
@@ -373,7 +376,7 @@
                         <p>填写以下信息，开启合作洽谈</p>
                     </div>
                     
-                    <form id="partnership-form-content">
+                    <form id="partnership-form-content" novalidate>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="partner-name">联系人姓名 *</label>
@@ -463,7 +466,7 @@
                         <p>填写以下信息，我们将尽快与您联系</p>
                     </div>
                     
-                    <form id="other-form-content">
+                    <form id="other-form-content" novalidate>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="other-name">姓名 *</label>
@@ -544,7 +547,7 @@
                         <div class="info-icon">📱</div>
                         <div class="info-content">
                             <h3>微信</h3>
-                            <p>CementEHS_Brain</p>
+                            <p>AnHuan_ZhiNao</p>
                             <p class="info-note">添加"智脑君"微信</p>
                         </div>
                     </div>
@@ -698,7 +701,7 @@
                 <h3>联系信息</h3>
                 <ul>
                     <li>📧 consult@cementehs.com</li>
-                    <li>📱 CementEHS_Brain</li>
+                    <li>📱 AnHuan_ZhiNao</li>
                     <li>📍 深圳南山区科技园</li>
                     <li>🕒 周一至周五 9:00-18:00</li>
                 </ul>
@@ -721,7 +724,73 @@
         </div>
     </footer>
 
+    <!-- 页脚 -->
+    <footer class="main-footer">
+        <!-- ... 页脚内容 ... -->
+    </footer>
+
+    <!-- 调试工具 -->
+    <div id="debug-tools" style="
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 9999;
+        font-size: 12px;
+        max-width: 300px;
+    ">
+        <h4 style="margin: 0 0 10px 0;">调试工具</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+            <button onclick="testFormData()" style="background: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
+                测试数据提取
+            </button>
+            <button onclick="showStorage()" style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
+                显示存储
+            </button>
+            <button onclick="fillTestData()" style="background: #FF9800; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
+                填充测试数据
+            </button>
+            <button onclick="goToAdmin()" style="background: #9C27B0; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
+                打开后台
+            </button>
+        </div>
+    </div>
+
+
+
+    <!-- 调试工具 -->
+    <div id="debug-tools" style="
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 9999;
+        font-size: 12px;
+        max-width: 300px;
+    ">
+        <h4 style="margin: 0 0 10px 0; font-size: 14px;">调试工具</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+            <button onclick="debugCheckStorage()" style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
+                检查存储
+            </button>
+            <button onclick="window.open('admin.html', '_blank')" style="background: #9C27B0; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
+                打开后台
+            </button>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/contact.js"></script>
+
+    </body>
+    </html>
+
+
 </body>
 </html>

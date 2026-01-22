@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据管理后台 | 水泥安环智脑</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+</head>
+<body>
+    <!-- 登录页面 -->
+    <div id="login-page" class="admin-page">
+        <div class="login-container">
+            <div class="login-header">
+                <img src="images/logo/logo.png" alt="水泥安环智脑 Logo">
+                <h1>数据管理后台</h1>
+                <p>网站运营方专用</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" placeholder="请输入用户名" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" placeholder="请输入密码" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember">
+                        <span>记住登录状态</span>
+                    </label>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-large">登录</button>
+                </div>
+                
+                <div class="login-hint">
+                    <p>默认账号：admin / 密码：AnHuan2024</p>
+                    <p>首次登录后请及时修改密码</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 在登录表单后添加 -->
+    <div style="margin-top: 20px; text-align: center;">
+        <button onclick="testLogin()" style="
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        ">
+            测试登录（无需密码）
+        </button>
+    </div>
+
+    <script>
+    function testLogin() {
+        console.log('=== 测试登录开始 ===');
+        
+        // 直接切换页面
+        const loginPage = document.getElementById('login-page');
+        const dashboardPage = document.getElementById('dashboard-page');
+        
+        if (loginPage && dashboardPage) {
+            loginPage.style.display = 'none';
+            dashboardPage.style.display = 'block';
+            console.log('✅ 页面切换成功');
+            
+            // 模拟初始化
+            setTimeout(() => {
+                try {
+                    loadStats();
+                    console.log('✅ 数据加载成功');
+                    alert('测试成功！页面已切换到管理后台。');
+                } catch (error) {
+                    console.error('数据加载失败:', error);
+                }
+            }, 100);
+        } else {
+            console.error('❌ 页面元素未找到');
+            alert('错误：页面元素未找到，请检查HTML结构。');
+        }
+    }
+    </script>
+    
+    <!-- 主管理页面（登录后显示） -->
+    <div id="dashboard-page" class="admin-page" style="display: none;">
+        <!-- 顶部导航 -->
+        <nav class="admin-nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="images/logo/logo.png" alt="Logo">
+                    <span>数据管理后台</span>
+                </div>
+                
+                <div class="nav-user">
+                    <span id="current-user">管理员</span>
+                    <!-- 添加测试数据按钮 -->
+                    <button id="add-test-data" class="btn btn-warning" style="margin-right: 10px;">
+                        📊 添加测试数据
+                    </button>
+                    <button id="logout-btn" class="btn btn-secondary">退出登录</button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- 侧边栏 -->
+        <div class="admin-sidebar">
+            <div class="sidebar-menu">
+                <a href="#dashboard" class="menu-item active">
+                    <span class="menu-icon">📊</span>
+                    <span class="menu-text">数据概览</span>
+                </a>
+                
+                <a href="#consultations" class="menu-item">
+                    <span class="menu-icon">📅</span>
+                    <span class="menu-text">预约咨询</span>
+                    <span class="menu-badge" id="consultation-count">0</span>
+                </a>
+                
+                <a href="#wechat" class="menu-item">
+                    <span class="menu-icon">💬</span>
+                    <span class="menu-text">微信咨询</span>
+                    <span class="menu-badge" id="wechat-count">0</span>
+                </a>
+                
+                <a href="#partnership" class="menu-item">
+                    <span class="menu-icon">🤝</span>
+                    <span class="menu-text">合作洽谈</span>
+                    <span class="menu-badge" id="partnership-count">0</span>
+                </a>
+                
+                <a href="#other" class="menu-item">
+                    <span class="menu-icon">📧</span>
+                    <span class="menu-text">其他咨询</span>
+                    <span class="menu-badge" id="other-count">0</span>
+                </a>
+                
+                <a href="#export" class="menu-item">
+                    <span class="menu-icon">📥</span>
+                    <span class="menu-text">数据导出</span>
+                </a>
+                
+                <a href="#settings" class="menu-item">
+                    <span class="menu-icon">⚙️</span>
+                    <span class="menu-text">系统设置</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="admin-content">
+            <!-- 数据概览 -->
+            <div id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>数据概览</h1>
+                    <p>最近30天的数据统计</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <h3>总提交量</h3>
+                            <div class="stat-number" id="total-submissions">0</div>
+                            <div class="stat-change">
+                                <span class="change-up">↑ 12%</span> 较上月
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <h3>今日新增</h3>
+                            <div class="stat-number" id="today-submissions">0</div>
+                            <div class="stat-change">
+                                <span class="change-up">↑ 3</span> 较昨日
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <h3>转化率</h3>
+                            <div class="stat-number" id="conversion-rate">0%</div>
+                            <div class="stat-change">
+                                <span class="change-up">↑ 2%</span> 提升
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-info">
+                            <h3>平均响应时间</h3>
+                            <div class="stat-number" id="avg-response-time">0h</div>
+                            <div class="stat-change">
+                                <span class="change-down">↓ 1.5h</span> 改善
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>提交趋势</h3>
+                        <div class="chart-placeholder" id="submission-chart">
+                            图表加载中...
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>咨询类型分布</h3>
+                        <div class="chart-placeholder" id="type-chart">
+                            图表加载中...
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-submissions">
+                    <h3>最近提交</h3>
+                    <div class="table-container">
+                        <table id="recent-table">
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>姓名</th>
+                                    <th>公司</th>
+                                    <th>类型</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-table-body">
+                                <!-- 数据动态加载 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 预约咨询列表 -->
+            <div id="consultations" class="content-section">
+                <div class="section-header">
+                    <h1>预约咨询管理</h1>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" onclick="exportData('consultation')">
+                            <span>📥</span> 导出数据
+                        </button>
+                        <button class="btn btn-secondary" onclick="refreshData()">
+                            <span>🔄</span> 刷新
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>状态筛选：</label>
+                        <select id="status-filter" onchange="filterConsultations()">
+                            <option value="all">全部状态</option>
+                            <option value="pending">待处理</option>
+                            <option value="contacted">已联系</option>
+                            <option value="scheduled">已安排</option>
+                            <option value="completed">已完成</option>
+                            <option value="cancelled">已取消</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>时间范围：</label>
+                        <input type="date" id="date-from" onchange="filterConsultations()">
+                        <span>至</span>
+                        <input type="date" id="date-to" onchange="filterConsultations()">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <input type="text" id="search-input" placeholder="搜索姓名、公司..." 
+                               onkeyup="searchConsultations()">
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>提交时间</th>
+                                <th>姓名</th>
+                                <th>公司</th>
+                                <th>职位</th>
+                                <th>感兴趣服务</th>
+                                <th>期望时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="consultation-table-body">
+                            <!-- 数据动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn" onclick="prevPage()">上一页</button>
+                    <span id="page-info">第1页，共1页</span>
+                    <button class="page-btn" onclick="nextPage()">下一页</button>
+                </div>
+            </div>
+            
+            <!-- 其他内容区域类似，代码省略 -->
+            
+            <!-- 详情模态框 -->
+            <div class="modal" id="detail-modal">
+                <div class="modal-content large">
+                    <button class="modal-close">&times;</button>
+                    <div class="modal-body">
+                        <div id="detail-content">
+                            <!-- 详情动态加载 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 编辑状态模态框 -->
+            <div class="modal" id="edit-modal">
+                <div class="modal-content">
+                    <button class="modal-close">&times;</button>
+                    <div class="modal-body">
+                        <h2>更新状态</h2>
+                        <form id="edit-form">
+                            <input type="hidden" id="edit-id">
+                            <input type="hidden" id="edit-type">
+                            
+                            <div class="form-group">
+                                <label for="edit-status">状态</label>
+                                <select id="edit-status" required>
+                                    <option value="pending">待处理</option>
+                                    <option value="contacted">已联系</option>
+                                    <option value="scheduled">已安排</option>
+                                    <option value="completed">已完成</option>
+                                    <option value="cancelled">已取消</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-notes">处理备注</label>
+                                <textarea id="edit-notes" rows="3" placeholder="记录处理情况..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-followup">跟进时间</label>
+                                <input type="datetime-local" id="edit-followup">
+                            </div>
+                            
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-secondary" onclick="closeEditModal()">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+
+    <!-- 调试控制台 -->
+    <div id="debug-console" style="
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 300px;
+    height: 200px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    font-family: monospace;
+    z-index: 9999;
+    overflow-y: auto;
+    display: none;
+    ">
+    <div style="display: flex; justify-content: space-between;">
+        <span>调试控制台</span>
+        <button onclick="document.getElementById('debug-console').style.display='none'" style="background: red; color: white; border: none; padding: 2px 5px;">X</button>
+    </div>
+    <div id="debug-output"></div>
+    </div>
+
+    <script>
+    // 调试函数
+    function debugLog(message) {
+    const output = document.getElementById('debug-output');
+    if (output) {
+        output.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${message}</div>`;
+        output.scrollTop = output.scrollHeight;
+    }
+    console.log(message);
+    }
+
+    // 添加一个测试查看数据的函数
+    function testViewData() {
+        const submissions = getAllSubmissions();
+        console.log('所有提交数据:', submissions);
+        
+        if (submissions.length > 0) {
+            const lastSub = submissions[0];
+            console.log('最新一条数据的原始字段:', Object.keys(lastSub));
+            console.log('最新数据详情:', lastSub);
+        }
+    }
+
+    // 在 admin.html 的调试控制台添加按钮
+    // <button onclick="testViewData()" style="background: #FF9800; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
+    //     查看数据
+    // </button>
+
+    // 页面加载时的调试
+    document.addEventListener('DOMContentLoaded', function() {
+    debugLog('页面加载完成');
+    debugLog('登录页面显示状态: ' + (document.getElementById('login-page')?.style.display || '默认'));
+    debugLog('管理页面显示状态: ' + (document.getElementById('dashboard-page')?.style.display || '默认'));
+
+    // 显示调试控制台
+    document.getElementById('debug-console').style.display = 'block';
+    });
+
+    // 测试页面切换
+    function testPageSwitch() {
+    debugLog('=== 测试页面切换 ===');
+    debugLog('当前登录页面display: ' + document.getElementById('login-page').style.display);
+    debugLog('当前管理页面display: ' + document.getElementById('dashboard-page').style.display);
+
+    // 直接切换
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('dashboard-page').style.display = 'block';
+
+    debugLog('切换后登录页面display: ' + document.getElementById('login-page').style.display);
+    debugLog('切换后管理页面display: ' + document.getElementById('dashboard-page').style.display);
+    }
+    </script>
+</body>
+</html>

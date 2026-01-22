@@ -307,6 +307,53 @@
     margin-top: 0.2rem;
 }
 
+/* 修复复选框样式 - 添加到 .checkbox-label 后面 */
+.checkbox-label input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+    margin-right: 8px !important;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    flex-shrink: 0;
+    appearance: auto;
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+}
+
+/* 确保标签正确对齐 */
+.checkbox-label {
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    gap: 10px !important;
+    position: relative;
+}
+
+/* 移除可能存在的覆盖层 */
+.checkbox-label::before,
+.checkbox-label::after {
+    display: none !important;
+}
+
+/* 确保链接不会干扰点击 */
+.checkbox-label a {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+/* 鼠标悬停效果 */
+.checkbox-label:hover input[type="checkbox"] {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(42, 91, 158, 0.1);
+}
+
 .checkbox-label a {
     color: var(--secondary-color);
     text-decoration: none;
@@ -717,4 +764,222 @@
     .overview-stats {
         grid-template-columns: 1fr;
     }
+
+    /* 在 contact.css 中添加以下样式 */
+
+    /* 微信二维码图片样式 */
+    .qr-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .qr-image img:hover {
+        transform: scale(1.05);
+    }
+
+    /* 移除占位符样式 */
+    .qr-placeholder {
+        display: none;
+    }
+
+    /* 二维码下载链接 */
+    .qr-download {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .qr-download a {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .qr-download a:hover {
+        background-color: var(--secondary-color);
+    }
+
+    /* 微信提示信息 */
+    .qr-tip {
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background-color: #fff8e1;
+        border-radius: 4px;
+        border-left: 3px solid #ffc107;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+        .qr-image {
+            width: 180px;
+            height: 180px;
+        }
+        
+        .qr-download a {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+
+/* 清除表单错误提示的样式 */
+.error-message {
+    color: #dc3545 !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.25rem !important;
+    display: block !important;
+}
+
+input.error, select.error, textarea.error {
+    border-color: #dc3545 !important;
+}
+
+/* 成功状态 */
+input.success, select.success, textarea.success {
+    border-color: #28a745 !important;
+}
+
+/* 当表单提交成功后，隐藏所有错误消息 */
+form.submitted .error-message {
+    display: none !important;
+}
+
+/* 修复表单错误提示样式 */
+.error-message {
+    color: #dc3545 !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.25rem !important;
+    display: block !important;
+    min-height: 1.25rem;
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #dc3545 !important;
+    background-color: #fff5f5;
+}
+
+/* 修复复选框的错误样式 */
+.checkbox-label.error {
+    color: #dc3545 !important;
+}
+
+.checkbox-label.error input[type="checkbox"] {
+    outline: 2px solid #dc3545;
+    outline-offset: 2px;
+}
+
+/* 表单成功提交后的状态 */
+form.submitted .error-message {
+    display: none !important;
+}
+
+.form-group input.success,
+.form-group select.success,
+.form-group textarea.success {
+    border-color: #28a745 !important;
+}
+
+/* 表单验证样式 */
+.error-message {
+    color: #dc3545 !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.25rem !important;
+    display: block !important;
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #dc3545 !important;
+    background-color: #fff5f5 !important;
+}
+
+/* 修复复选框的错误样式 */
+.checkbox-label.error {
+    color: #dc3545 !important;
+}
+
+.checkbox-label.error input[type="checkbox"] {
+    outline: 2px solid #dc3545 !important;
+    outline-offset: 2px !important;
+}
+
+/* 移除浏览器默认验证气泡 */
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+    box-shadow: none !important;
+}
+
+/* 成功状态 */
+.form-group input.success,
+.form-group select.success,
+.form-group textarea.success {
+    border-color: #28a745 !important;
+}
+
+/* 移除所有浏览器默认验证样式 */
+form[novalidate] input:required,
+form[novalidate] select:required,
+form[novalidate] textarea:required {
+    box-shadow: none !important;
+}
+
+/* 防止表单自动验证 */
+form:invalid {
+    border: none !important;
+}
+
+/* 确保提交后不显示错误 */
+.form-submitted .error-message {
+    display: none !important;
+}
+
+/* 自定义表单验证样式 */
+.form-error {
+    border-color: #dc3545 !important;
+    background-color: #fff5f5 !important;
+}
+
+.form-error-message {
+    color: #dc3545 !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.25rem !important;
+    display: none;
+}
+
+/* 隐藏浏览器默认验证气泡 */
+input:invalid, select:invalid, textarea:invalid {
+    box-shadow: none !important;
+}
+
+/* 移除所有可能的焦点样式 */
+input:focus:invalid, select:focus:invalid, textarea:focus:invalid {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* 确保表单不会显示浏览器验证消息 */
+form {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* 禁用所有HTML5验证 */
+form:invalid {
+    border: none !important;
 }

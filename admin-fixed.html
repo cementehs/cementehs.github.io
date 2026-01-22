@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据管理后台 | 水泥安环智脑</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+        }
+        
+        /* 页面容器 */
+        .page-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* 登录页面 */
+        #login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2A5B9E 0%, #1a4177 100%);
+        }
+        
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .login-box h1 {
+            color: #2A5B9E;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2A5B9E;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .login-btn:hover {
+            background: #1a4177;
+        }
+        
+        /* 管理页面 */
+        #dashboard-page {
+            display: none;
+            opacity: 0;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-content {
+            padding: 20px;
+        }
+        
+        /* 页面切换动画 */
+        .page-visible {
+            display: flex !important;
+            opacity: 1 !important;
+            z-index: 10;
+        }
+        
+        .page-hidden {
+            display: none !important;
+            opacity: 0 !important;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 登录页面 -->
+    <div id="login-page" class="page-container page-visible">
+        <div class="login-box">
+            <h1>数据管理后台</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="用户名" value="admin" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="密码" value="AnHuan2024" required>
+                </div>
+                <button type="submit" class="login-btn">登录</button>
+            </form>
+            <div style="margin-top: 20px; text-align: center; color: #666; font-size: 14px;">
+                <p>默认账号: admin</p>
+                <p>默认密码: AnHuan2024</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 管理页面 -->
+    <div id="dashboard-page" class="page-container">
+        <div class="dashboard-header">
+            <h2>数据管理后台</h2>
+            <div>
+                <span id="current-user">管理员</span>
+                <button onclick="logout()" style="margin-left: 20px; padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    退出登录
+                </button>
+            </div>
+        </div>
+        <div class="dashboard-content">
+            <h3>提交数据</h3>
+            <div id="data-content">
+                数据加载中...
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // 页面切换函数
+    function showPage(pageId) {
+        // 隐藏所有页面
+        document.querySelectorAll('.page-container').forEach(page => {
+            page.classList.remove('page-visible');
+            page.classList.add('page-hidden');
+        });
+        
+        // 显示指定页面
+        const page = document.getElementById(pageId);
+        if (page) {
+            page.classList.remove('page-hidden');
+            page.classList.add('page-visible');
+            
+            // 如果是管理页面，初始化数据
+            if (pageId === 'dashboard-page') {
+                setTimeout(loadDashboardData, 100);
+            }
+        }
+    }
+    
+    // 登录处理
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        console.log('登录尝试:', username, password);
+        
+        // 简单验证
+        if (username === 'admin' && password === 'AnHuan2024') {
+            // 保存登录状态
+            localStorage.setItem('admin_login', 'true');
+            localStorage.setItem('admin_username', username);
+            
+            // 更新用户名显示
+            document.getElementById('current-user').textContent = username;
+            
+            // 切换到管理页面
+            showPage('dashboard-page');
+            
+            console.log('✅ 登录成功，页面已切换');
+        } else {
+            alert('用户名或密码错误');
+        }
+    });
+    
+    // 加载仪表板数据
+    function loadDashboardData() {
+        const container = document.getElementById('data-content');
+        
+        // 从 localStorage 获取数据
+        const submissions = JSON.parse(localStorage.getItem('cement_submissions') || '[]');
+        const backup = JSON.parse(localStorage.getItem('cement_submissions_backup') || '[]');
+        const allData = [...submissions, ...backup];
+        
+        if (allData.length === 0) {
+            container.innerHTML = '<p>暂无提交数据</p>';
+            return;
+        }
+        
+        let html = `
+            <p>共 ${allData.length} 条提交记录</p>
+            <div style="margin-top: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f5f5f5;">
+                            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">时间</th>
+                            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">姓名</th>
+                            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">公司</th>
+                            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">类型</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        
+        allData.slice(0, 10).forEach(item => {
+            const name = item['consult-name'] || item['wechat-name'] || item['partner-name'] || item['other-name'] || '未知';
+            const company = item['consult-company'] || item['wechat-company'] || item['partner-company'] || item['other-company'] || '-';
+            const type = item.type || '未知';
+            
+            html += `
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.timestamp || '-'}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">${name}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">${company}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">${type}</td>
+                </tr>
+            `;
+        });
+        
+        html += `
+                    </tbody>
+                </table>
+            </div>
+            <button onclick="exportData()" style="margin-top: 20px; padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                导出所有数据
+            </button>
+        `;
+        
+        container.innerHTML = html;
+    }
+    
+    // 登出函数
+    function logout() {
+        if (confirm('确定要退出登录吗？')) {
+            localStorage.removeItem('admin_login');
+            localStorage.removeItem('admin_username');
+            showPage('login-page');
+        }
+    }
+    
+    // 页面加载时检查登录状态
+    window.addEventListener('load', function() {
+        console.log('页面加载完成');
+        
+        const isLoggedIn = localStorage.getItem('admin_login') === 'true';
+        const username = localStorage.getItem('admin_username');
+        
+        if (isLoggedIn && username) {
+            document.getElementById('current-user').textContent = username;
+            showPage('dashboard-page');
+        } else {
+            showPage('login-page');
+        }
+    });
+    
+    // 导出数据函数
+    function exportData() {
+        // ... 同上 ...
+    }
+    </script>
+</body>
+</html>
