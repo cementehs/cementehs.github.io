@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+
+    <!-- 添加JSZip库支持 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- 添加 Chart.js 图表库 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 引入 crypto-js 库用于安全地哈希密码 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
     <!-- 登录页面 -->
@@ -51,16 +58,7 @@
 
     <!-- 在登录表单后添加 -->
     <div style="margin-top: 20px; text-align: center;">
-        <button onclick="testLogin()" style="
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        ">
-            测试登录（无需密码）
-        </button>
+
     </div>
 
     <script>
@@ -105,9 +103,17 @@
                 
                 <div class="nav-user">
                     <span id="current-user">管理员</span>
+                    <!-- 修复数据按钮 -->
+                    <button onclick="fixDataTypes(); location.reload();" class="btn btn-warning" style="margin-right: 10px;">
+                        🔧 修复数据类型
+                    </button>
                     <!-- 添加测试数据按钮 -->
-                    <button id="add-test-data" class="btn btn-warning" style="margin-right: 10px;">
-                        📊 添加测试数据
+                    <button onclick="createComprehensiveTestData()" class="btn btn-info" style="margin-right: 10px;">
+                        📊 生成图表数据
+                    </button>
+                    <!-- 刷新按钮 -->
+                    <button onclick="refreshCurrentPage()" class="btn btn-secondary" style="margin-right: 10px;">
+                        🔄 刷新
                     </button>
                     <button id="logout-btn" class="btn btn-secondary">退出登录</button>
                 </div>
@@ -216,15 +222,21 @@
                 <div class="dashboard-charts">
                     <div class="chart-container">
                         <h3>提交趋势</h3>
-                        <div class="chart-placeholder" id="submission-chart">
-                            图表加载中...
+                        <div class="chart-container-inner">
+                            <canvas id="submission-chart"></canvas>
+                            <div class="chart-loading" id="submission-loading">
+                                图表加载中...
+                            </div>
                         </div>
                     </div>
                     
                     <div class="chart-container">
                         <h3>咨询类型分布</h3>
-                        <div class="chart-placeholder" id="type-chart">
-                            图表加载中...
+                        <div class="chart-container-inner">
+                            <canvas id="type-chart"></canvas>
+                            <div class="chart-loading" id="type-loading">
+                                图表加载中...
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -317,8 +329,364 @@
                     <button class="page-btn" onclick="nextPage()">下一页</button>
                 </div>
             </div>
+
+            <!-- 数据导出页面 -->
+            <div id="export" class="content-section">
+                <div class="section-header">
+                    <h1>数据导出</h1>
+                    <p>导出不同格式的数据文件</p>
+                </div>
+                
+                <div class="export-content">
+                    <div class="export-intro">
+                        <h2>📊 数据导出指南</h2>
+                        <p>选择您需要的数据格式进行导出。所有数据均来自用户提交的表单。</p>
+                        <ul>
+                            <li><strong>CSV格式</strong>：适合在Excel中打开和分析</li>
+                            <li><strong>Excel格式</strong>：保留格式，适合直接查看</li>
+                            <li><strong>JSON格式</strong>：适合程序读取和数据处理</li>
+                            <li><strong>PDF格式</strong>：适合打印和分享</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="export-options">
+                        <div class="export-card">
+                            <div class="export-icon">📁</div>
+                            <h3>导出全部数据</h3>
+                            <p>导出所有类型的数据到单个文件</p>
+                            <div class="export-actions">
+                                <button class="btn btn-primary" onclick="exportAllData('csv')">
+                                    <span>📥</span> CSV格式
+                                </button>
+                                <button class="btn btn-secondary" onclick="exportAllData('excel')">
+                                    <span>📊</span> Excel格式
+                                </button>
+                                <button class="btn btn-secondary" onclick="exportAllData('json')">
+                                    <span>📄</span> JSON格式
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="export-card">
+                            <div class="export-icon">📅</div>
+                            <h3>按类型导出</h3>
+                            <p>按咨询类型分别导出数据</p>
+                            <div class="export-filters">
+                                <div class="filter-group">
+                                    <label>选择数据类型：</label>
+                                    <select id="export-type-select">
+                                        <option value="consultation">预约咨询</option>
+                                        <option value="wechat">微信咨询</option>
+                                        <option value="partnership">合作洽谈</option>
+                                        <option value="other">其他咨询</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>时间范围：</label>
+                                    <input type="date" id="export-date-from">
+                                    <span>至</span>
+                                    <input type="date" id="export-date-to">
+                                </div>
+                            </div>
+                            <div class="export-actions">
+                                <button class="btn btn-primary" onclick="exportByType()">
+                                    <span>📥</span> 导出选定类型
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="export-card">
+                            <div class="export-icon">📋</div>
+                            <h3>批量导出</h3>
+                            <p>一次导出多个类型的数据</p>
+                            <div class="export-checkboxes">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="export-consultation" checked>
+                                    <span>预约咨询</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="export-wechat" checked>
+                                    <span>微信咨询</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="export-partnership" checked>
+                                    <span>合作洽谈</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="export-other" checked>
+                                    <span>其他咨询</span>
+                                </label>
+                            </div>
+                            <div class="export-actions">
+                                <button class="btn btn-primary" onclick="batchExport()">
+                                    <span>📦</span> 批量导出
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="export-stats">
+                        <h3>📈 数据统计</h3>
+                        <div class="stats-container">
+                            <div class="stat-item">
+                                <div class="stat-label">总数据量</div>
+                                <div class="stat-number" id="export-total-count">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">预约咨询</div>
+                                <div class="stat-number" id="export-consultation-count">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">微信咨询</div>
+                                <div class="stat-number" id="export-wechat-count">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">合作洽谈</div>
+                                <div class="stat-number" id="export-partnership-count">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">其他咨询</div>
+                                <div class="stat-number" id="export-other-count">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="export-history">
+                        <h3>📋 导出记录</h3>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>导出时间</th>
+                                        <th>文件名</th>
+                                        <th>数据量</th>
+                                        <th>格式</th>
+                                        <th>大小</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="export-history-body">
+                                    <!-- 导出记录动态加载 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <!-- 其他内容区域类似，代码省略 -->
+            <!-- 在admin.html中，找到微信咨询、合作洽谈和其他咨询的空白区域，替换为以下内容 -->
+
+            <!-- 微信咨询页面 -->
+            <div id="wechat" class="content-section">
+                <div class="section-header">
+                    <h1>微信咨询管理</h1>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" onclick="exportData('wechat')">
+                            <span>📥</span> 导出数据
+                        </button>
+                        <button class="btn btn-secondary" onclick="refreshData()">
+                            <span>🔄</span> 刷新
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>状态筛选：</label>
+                        <select id="wechat-status-filter" onchange="filterWechatSubmissions()">
+                            <option value="all">全部状态</option>
+                            <option value="pending">待处理</option>
+                            <option value="contacted">已联系</option>
+                            <option value="added">已添加</option>
+                            <option value="cancelled">已取消</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>时间范围：</label>
+                        <input type="date" id="wechat-date-from" onchange="filterWechatSubmissions()">
+                        <span>至</span>
+                        <input type="date" id="wechat-date-to" onchange="filterWechatSubmissions()">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <input type="text" id="wechat-search-input" placeholder="搜索姓名、公司..." 
+                            onkeyup="searchWechatSubmissions()">
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" onclick="toggleSelectAll(this)"></th> <!-- 添加复选框列 -->
+                                <th>提交时间</th>
+                                <th>姓名</th>
+                                <th>公司</th>
+                                <th>职位</th>
+                                <th>行业</th>
+                                <th>添加目的</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="wechat-table-body">
+                            <!-- 数据动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn" onclick="prevWechatPage()">上一页</button>
+                    <span id="wechat-page-info">第1页，共1页</span>
+                    <button class="page-btn" onclick="nextWechatPage()">下一页</button>
+                </div>
+            </div>
+
+            <!-- 合作洽谈页面 -->
+            <div id="partnership" class="content-section">
+                <div class="section-header">
+                    <h1>合作洽谈管理</h1>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" onclick="exportData('partnership')">
+                            <span>📥</span> 导出数据
+                        </button>
+                        <button class="btn btn-secondary" onclick="refreshData()">
+                            <span>🔄</span> 刷新
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>状态筛选：</label>
+                        <select id="partnership-status-filter" onchange="filterPartnershipSubmissions()">
+                            <option value="all">全部状态</option>
+                            <option value="pending">待处理</option>
+                            <option value="contacted">已联系</option>
+                            <option value="negotiating">洽谈中</option>
+                            <option value="agreed">已达成合作</option>
+                            <option value="cancelled">已取消</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>合作类型：</label>
+                        <select id="partnership-type-filter" onchange="filterPartnershipSubmissions()">
+                            <option value="all">全部类型</option>
+                            <option value="supplier">供应商</option>
+                            <option value="channel">渠道合作伙伴</option>
+                            <option value="joint">联合解决方案</option>
+                            <option value="expert">专家网络</option>
+                            <option value="other">其他合作</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <input type="text" id="partnership-search-input" placeholder="搜索公司、联系人..." 
+                            onkeyup="searchPartnershipSubmissions()">
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" onclick="toggleSelectAll(this)"></th> <!-- 添加复选框列 -->
+                                <th>提交时间</th>
+                                <th>联系人</th>
+                                <th>公司</th>
+                                <th>职位</th>
+                                <th>公司类型</th>
+                                <th>合作类型</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="partnership-table-body">
+                            <!-- 数据动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn" onclick="prevPartnershipPage()">上一页</button>
+                    <span id="partnership-page-info">第1页，共1页</span>
+                    <button class="page-btn" onclick="nextPartnershipPage()">下一页</button>
+                </div>
+            </div>
+
+            <!-- 其他咨询页面 -->
+            <div id="other" class="content-section">
+                <div class="section-header">
+                    <h1>其他咨询管理</h1>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" onclick="exportData('other')">
+                            <span>📥</span> 导出数据
+                        </button>
+                        <button class="btn btn-secondary" onclick="refreshData()">
+                            <span>🔄</span> 刷新
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>类别筛选：</label>
+                        <select id="other-category-filter" onchange="filterOtherSubmissions()">
+                            <option value="all">全部类别</option>
+                            <option value="product">产品与方案咨询</option>
+                            <option value="price">服务报价与合同</option>
+                            <option value="speech">演讲与培训邀请</option>
+                            <option value="media">媒体合作</option>
+                            <option value="career">招聘与职业机会</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>状态筛选：</label>
+                        <select id="other-status-filter" onchange="filterOtherSubmissions()">
+                            <option value="all">全部状态</option>
+                            <option value="pending">待处理</option>
+                            <option value="replied">已回复</option>
+                            <option value="closed">已关闭</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <input type="text" id="other-search-input" placeholder="搜索主题、联系人..." 
+                            onkeyup="searchOtherSubmissions()">
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" onclick="toggleSelectAll(this)"></th> <!-- 添加复选框列 -->
+                                <th>提交时间</th>
+                                <th>联系人</th>
+                                <th>公司</th>
+                                <th>咨询类别</th>
+                                <th>咨询主题</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="other-table-body">
+                            <!-- 数据动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn" onclick="prevOtherPage()">上一页</button>
+                    <span id="other-page-info">第1页，共1页</span>
+                    <button class="page-btn" onclick="nextOtherPage()">下一页</button>
+                </div>
+            </div>
             
             <!-- 详情模态框 -->
             <div class="modal" id="detail-modal">
@@ -366,6 +734,58 @@
                             <div class="form-submit">
                                 <button type="submit" class="btn btn-primary">保存</button>
                                 <button type="button" class="btn btn-secondary" onclick="closeEditModal()">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 密码修改模态框 -->
+            <div class="modal" id="change-password-modal">
+                <div class="modal-content">
+                    <button class="modal-close" type="button">&times;</button>
+                    <div class="modal-body">
+                        <h2>🔐 修改管理员密码</h2>
+                        <p class="modal-hint">请谨慎操作，修改成功后需要重新登录。</p>
+                        
+                        <form id="change-password-form" novalidate>
+                            <div class="form-group">
+                                <label for="current-password">当前密码 *</label>
+                                <input type="password" id="current-password" placeholder="请输入当前使用的密码" required>
+                                <div class="field-hint">默认密码：AnHuan2024</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password">新密码 *</label>
+                                <input type="password" id="new-password" placeholder="至少6位，建议包含字母和数字" required minlength="6">
+                                <div class="password-strength" id="password-strength">
+                                    <span class="strength-text">密码强度：</span>
+                                    <span class="strength-bar">
+                                        <span class="strength-segment"></span>
+                                        <span class="strength-segment"></span>
+                                        <span class="strength-segment"></span>
+                                    </span>
+                                    <span class="strength-label" id="strength-label">弱</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password">确认新密码 *</label>
+                                <input type="password" id="confirm-password" placeholder="请再次输入新密码" required>
+                                <div class="field-hint" id="password-match-hint"></div>
+                            </div>
+                            
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary btn-large" id="submit-password-btn">
+                                    💾 保存新密码
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="closeChangePasswordModal()">
+                                    取消
+                                </button>
+                            </div>
+                            
+                            <div class="form-footer">
+                                <p><strong>安全提示：</strong>请勿使用过于简单的密码，并确保定期更换。</p>
                             </div>
                         </form>
                     </div>
@@ -451,5 +871,58 @@
     debugLog('切换后管理页面display: ' + document.getElementById('dashboard-page').style.display);
     }
     </script>
+
+    <!-- 批量操作工具栏（固定在表格上方） -->
+    <div id="batch-toolbar" class="batch-toolbar" style="display: none;">
+        <div class="batch-info">
+            <span id="selected-count">0</span> 项被选中
+        </div>
+        <div class="batch-actions">
+            <button class="btn btn-sm btn-secondary" onclick="clearSelection()">
+                <span>✖️</span> 取消选择
+            </button>
+            <button class="btn btn-sm btn-danger" onclick="batchDeleteConfirm()">
+                <span>🗑️</span> 批量删除
+            </button>
+        </div>
+    </div>
+
+    <!-- 删除确认模态框 -->
+    <div class="modal" id="delete-confirm-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+            <div class="modal-body">
+                <div class="delete-icon">⚠️</div>
+                <h2 id="delete-title">确认删除</h2>
+                <div id="delete-message">
+                    <!-- 动态内容 -->
+                </div>
+                <div class="delete-actions">
+                    <button class="btn btn-danger btn-large" onclick="executeDelete()">
+                        <span>🗑️</span> 确认删除
+                    </button>
+                    <button class="btn btn-secondary" onclick="closeDeleteModal()">
+                        <span>↶</span> 取消
+                    </button>
+                </div>
+                <div class="delete-warning">
+                    <p><strong>注意：</strong>删除操作无法自动恢复。重要数据建议先<a href="#" onclick="exportCurrentData()">导出备份</a>。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除成功提示（带撤销选项） -->
+    <div id="undo-notification" class="undo-notification" style="display: none;">
+        <div class="undo-content">
+            <span>✅ 数据删除成功</span>
+            <button onclick="undoLastDelete()" class="btn btn-sm btn-secondary">
+                <span>↶</span> 撤销
+            </button>
+            <button onclick="hideUndoNotification()" class="btn btn-sm btn-secondary">
+                ✖️
+            </button>
+        </div>
+    </div>
 </body>
 </html>

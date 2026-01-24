@@ -355,6 +355,17 @@ function showSuccessMessage(formType) {
 // 修改 saveFormData 函数，确保字段名标准化
 function saveFormData(formData, formType) {
     console.log('=== 保存数据到 localStorage ===');
+
+        
+    // 确保 formType 是正确的类型
+    const validTypes = ['consultation', 'wechat', 'partnership', 'other'];
+    if (!validTypes.includes(formType)) {
+        // 如果是合作洽谈中的公司类型，转换为 partnership
+        if (formType === 'hardware' || formType === 'software' || formType === 'service') {
+            formType = 'partnership';
+        }
+    }
+    
     
     // 创建标准化的数据对象
     const submission = {
