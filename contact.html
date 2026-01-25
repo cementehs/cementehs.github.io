@@ -9,6 +9,119 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+    <style>
+        /* 修复微信二维码布局样式 */
+        .wechat-qr-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+            margin-top: 1.5rem;
+        }
+        
+        .qr-code {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+        
+        .qr-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .qr-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .qr-text {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .qr-text p {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .qr-note {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+        
+        .qr-tip {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .qr-tip p {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .qr-tip ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .qr-tip li {
+            padding: 0.3rem 0;
+            color: var(--text-color);
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+        }
+        
+        .qr-tip li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .qr-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            grid-column: 1 / -1;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .wechat-qr-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .qr-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -283,36 +396,8 @@
                         <p>填写以下信息，获取"智脑君"微信二维码</p>
                     </div>
                     
-                    <div class="wechat-content">
-                        <div class="wechat-info">
-                            <div class="wechat-qr-placeholder">
-                                <div class="qr-code">
-                                    <div class="qr-image">
-                                        <!-- 替换为真实的微信二维码图片 -->
-                                        <img src="images/contact/wechat-qr-code.png" 
-                                             alt="水泥安环智脑官方微信二维码" 
-                                             title="扫描添加水泥安环智脑微信">
-                                    </div>
-                                    <div class="qr-text">
-                                        <p>扫描二维码添加"智脑君"微信</p>
-                                        <p class="qr-note">或搜索微信号: <strong>AnHuan_ZhiNao</strong></p>
-                                        <p class="qr-tip">添加时请备注：公司+姓名</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="wechat-benefits">
-                                <h3>添加微信后，您可以获得：</h3>
-                                <ul>
-                                    <li>最新行业报告与工具资源</li>
-                                    <li>线上分享会与培训通知</li>
-                                    <li>一对一专业问题解答</li>
-                                    <li>加入水泥安全数字化交流群</li>
-                                    <li>获取客户案例与最佳实践</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
+                    <!-- 表单部分（初始显示） -->
+                    <div class="wechat-form-section" id="wechat-form-section">
                         <form id="wechat-form-content" novalidate>
                             <div class="form-row">
                                 <div class="form-group">
@@ -363,9 +448,46 @@
                             
                             <div class="form-submit">
                                 <button type="submit" class="btn btn-primary btn-large">提交并获取二维码</button>
-                                <p class="form-hint">提交后，我们将通过邮件发送详细资料</p>
+                                <p class="form-hint">提交后，我们将显示微信二维码</p>
                             </div>
                         </form>
+                    </div>
+                    
+                    <!-- 二维码部分（初始隐藏，提交后显示） -->
+                    <div class="wechat-qr-section" id="wechat-qr-section" style="display: none;">
+                        <div class="qr-success-message">
+                            <div class="success-icon">✅</div>
+                            <h3>提交成功！请扫描下方二维码添加微信</h3>
+                            <p>添加时请备注：<span id="qr-note-company">公司</span>+<span id="qr-note-name">姓名</span></p>
+                        </div>
+                        
+                        <div class="wechat-qr-content">
+                            <div class="qr-code">
+                                <div class="qr-image">
+                                    <img src="images/contact/wechat-qr-code.png" 
+                                         alt="水泥安环智脑官方微信二维码" 
+                                         title="扫描添加水泥安环智脑微信">
+                                </div>
+                                <div class="qr-text">
+                                    <p>扫描二维码添加"智脑君"微信</p>
+                                    <p class="qr-note">或搜索微信号: <strong>AnHuan_ZhiNao</strong></p>
+                                </div>
+                            </div>
+                            
+                            <div class="qr-tip">
+                                <p>💡 温馨提示：</p>
+                                <ul>
+                                    <li>添加后您将获得行业报告与工具资源</li>
+                                    <li>可以加入水泥安全数字化交流群</li>
+                                    <li>获取最新线上分享会与培训通知</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="qr-actions">
+                            <button class="btn btn-secondary" id="edit-wechat-form">修改信息</button>
+                            <button class="btn btn-primary" id="download-qr">下载二维码</button>
+                        </div>
                     </div>
                 </div>
                 
@@ -724,73 +846,8 @@
         </div>
     </footer>
 
-    <!-- 页脚 -->
-    <footer class="main-footer">
-        <!-- ... 页脚内容 ... -->
-    </footer>
-
-    <!-- 调试工具 -->
-    <div id="debug-tools" style="
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 9999;
-        font-size: 12px;
-        max-width: 300px;
-    ">
-        <h4 style="margin: 0 0 10px 0;">调试工具</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <button onclick="testFormData()" style="background: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
-                测试数据提取
-            </button>
-            <button onclick="showStorage()" style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
-                显示存储
-            </button>
-            <button onclick="fillTestData()" style="background: #FF9800; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
-                填充测试数据
-            </button>
-            <button onclick="goToAdmin()" style="background: #9C27B0; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
-                打开后台
-            </button>
-        </div>
-    </div>
-
-
-
-    <!-- 调试工具 -->
-    <div id="debug-tools" style="
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 9999;
-        font-size: 12px;
-        max-width: 300px;
-    ">
-        <h4 style="margin: 0 0 10px 0; font-size: 14px;">调试工具</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <button onclick="debugCheckStorage()" style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
-                检查存储
-            </button>
-            <button onclick="window.open('admin.html', '_blank')" style="background: #9C27B0; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin: 2px; font-size: 12px;">
-                打开后台
-            </button>
-        </div>
-    </div>
-
     <script src="js/main.js"></script>
     <script src="js/contact.js"></script>
-
-    </body>
-    </html>
-
 
 </body>
 </html>

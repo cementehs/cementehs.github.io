@@ -2,13 +2,99 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('=== contact.js 加载 ===');
     
-    // 联系选项切换
-    const optionButtons = document.querySelectorAll('.option-card .btn');
-    const contactForms = document.querySelectorAll('.contact-form');
-    const optionCards = document.querySelectorAll('.option-card');
+    // 初始化变量
+    let optionButtons, contactForms, optionCards;
+    
+    // 等待DOM完全加载后初始化
+    setTimeout(initializeContactPage, 100);
+    
+    function initializeContactPage() {
+        console.log('=== 初始化联系页面 ===');
+        
+        // 获取DOM元素
+        optionButtons = document.querySelectorAll('.option-card .btn');
+        contactForms = document.querySelectorAll('.contact-form');
+        optionCards = document.querySelectorAll('.option-card');
+        
+        console.log('找到的选项按钮:', optionButtons.length);
+        console.log('找到的联系表单:', contactForms.length);
+        console.log('找到的选项卡片:', optionCards.length);
+        
+        // 初始化显示第一个表单（预约咨询）
+        if (contactForms.length > 0) {
+            showContactForm('consultation');
+        }
+        
+        // 为选项按钮添加点击事件
+        optionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                console.log('点击选项按钮:', this.dataset.option);
+                const option = this.dataset.option;
+                showContactForm(option);
+            });
+        });
+        
+        // CTA按钮点击事件
+        const ctaButtons = document.querySelectorAll('.contact-cta .btn');
+        ctaButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                console.log('点击CTA按钮:', this.dataset.option);
+                if (this.dataset.option) {
+                    const option = this.dataset.option;
+                    showContactForm(option);
+                }
+            });
+        });
+        
+        // FAQ切换
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const answer = this.nextElementSibling;
+                const toggle = this.querySelector('.faq-toggle');
+                
+                // 关闭其他打开的FAQ
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== this) {
+                        const otherItem = otherQuestion.parentElement;
+                        const otherAnswer = otherQuestion.nextElementSibling;
+                        const otherToggle = otherQuestion.querySelector('.faq-toggle');
+                        
+                        otherItem.classList.remove('active');
+                        otherAnswer.classList.remove('active');
+                        otherToggle.textContent = '+';
+                    }
+                });
+                
+                // 切换当前FAQ
+                faqItem.classList.toggle('active');
+                answer.classList.toggle('active');
+                
+                if (answer.classList.contains('active')) {
+                    toggle.textContent = '×';
+                } else {
+                    toggle.textContent = '+';
+                }
+            });
+        });
+        
+        // 绑定表单提交事件
+        bindFormEvents();
+        
+        // 绑定模态框事件
+        bindModalEvents();
+        
+        // 绑定微信相关事件
+        bindWechatEvents();
+        
+        console.log('=== 联系页面初始化完成 ===');
+    }
     
     // 显示指定的联系表单
     function showContactForm(optionId) {
+        console.log('显示表单:', optionId);
+        
         // 隐藏所有表单
         contactForms.forEach(form => {
             form.classList.remove('active');
@@ -19,195 +105,332 @@ document.addEventListener('DOMContentLoaded', function() {
         if (activeForm) {
             activeForm.classList.add('active');
             
+            // 如果切换到微信表单，确保显示表单部分，隐藏二维码部分
+            if (optionId === 'wechat') {
+                const formSection = activeForm.querySelector('#wechat-form-section');
+                const qrSection = activeForm.querySelector('#wechat-qr-section');
+                
+                if (formSection) {
+                    formSection.style.display = 'block';
+                    console.log('显示微信表单部分');
+                }
+                if (qrSection) {
+                    qrSection.style.display = 'none';
+                    console.log('隐藏微信二维码部分');
+                }
+            }
+            
+            // 高亮对应的选项卡片
+            if (optionCards) {
+                optionCards.forEach(card => {
+                    card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                    card.style.borderColor = '#f0f0f0';
+                });
+                
+                const activeCard = document.getElementById(optionId + '-option');
+                if (activeCard) {
+                    activeCard.style.boxShadow = '0 5px 15px rgba(42, 91, 158, 0.2)';
+                    activeCard.style.borderColor = '#2a5b9e';
+                }
+            }
+            
             // 滚动到表单区域
             setTimeout(() => {
                 activeForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 300);
-        }
-        
-        // 高亮对应的选项卡片
-        optionCards.forEach(card => {
-            card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
-            card.style.borderColor = '#f0f0f0';
-        });
-        
-        const activeCard = document.getElementById(optionId + '-option');
-        if (activeCard) {
-            activeCard.style.boxShadow = '0 5px 15px rgba(42, 91, 158, 0.2)';
-            activeCard.style.borderColor = 'var(--primary-color)';
+            }, 100);
+        } else {
+            console.error('未找到表单:', optionId + '-form');
         }
     }
     
-    // 为选项按钮添加点击事件
-    optionButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const option = this.dataset.option;
-            showContactForm(option);
-        });
-    });
-    
-    // CTA按钮点击事件
-    const ctaButtons = document.querySelectorAll('.contact-cta .btn');
-    ctaButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            if (this.dataset.option) {
-                const option = this.dataset.option;
-                showContactForm(option);
-            }
-        });
-    });
-    
-    // FAQ切换
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            const faqItem = this.parentElement;
-            const answer = this.nextElementSibling;
-            const toggle = this.querySelector('.faq-toggle');
-            
-            // 关闭其他打开的FAQ
-            faqQuestions.forEach(otherQuestion => {
-                if (otherQuestion !== this) {
-                    const otherItem = otherQuestion.parentElement;
-                    const otherAnswer = otherQuestion.nextElementSibling;
-                    const otherToggle = otherQuestion.querySelector('.faq-toggle');
-                    
-                    otherItem.classList.remove('active');
-                    otherAnswer.classList.remove('active');
-                    otherToggle.textContent = '+';
-                }
-            });
-            
-            // 切换当前FAQ
-            faqItem.classList.toggle('active');
-            answer.classList.toggle('active');
-            
-            if (answer.classList.contains('active')) {
-                toggle.textContent = '×';
+    // 绑定表单事件
+    function bindFormEvents() {
+        console.log('绑定表单事件...');
+        
+        const forms = [
+            { id: 'consultation-form-content', type: 'consultation' },
+            { id: 'wechat-form-content', type: 'wechat' },
+            { id: 'partnership-form-content', type: 'partnership' },
+            { id: 'other-form-content', type: 'other' }
+        ];
+        
+        forms.forEach(formConfig => {
+            const form = document.getElementById(formConfig.id);
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('表单提交:', formConfig.id, '类型:', formConfig.type);
+                    handleFormSubmit(this, formConfig.type);
+                });
+                console.log('已绑定表单:', formConfig.id);
             } else {
-                toggle.textContent = '+';
+                console.warn('未找到表单:', formConfig.id);
             }
         });
-    });
+    }
     
-    // 表单提交处理
-    const forms = document.querySelectorAll('form[id$="-content"]');
-    console.log('找到的表单数量:', forms.length);
-    
-    // 为每个表单添加提交事件
-    forms.forEach(form => {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            console.log('=== 表单提交开始 ===');
-            console.log('表单ID:', this.id);
-            
-            // 1. 获取表单类型
-            let formType = '';
-            if (this.id.includes('consultation')) {
-                formType = 'consultation';
-            } else if (this.id.includes('wechat')) {
-                formType = 'wechat';
-            } else if (this.id.includes('partnership')) {
-                formType = 'partnership';
-            } else if (this.id.includes('other')) {
-                formType = 'other';
-            }
-            
-            console.log('表单类型:', formType);
-            
-            // 2. 获取表单数据
-            const formData = getFormData(this, formType);
-            console.log('提取的表单数据:', formData);
-            
-            // 3. 验证表单数据
-            const isValid = validateFormData(formData, formType);
-            if (!isValid) {
-                return;
-            }
-            
-            // 4. 显示加载状态
-            const submitBtn = this.querySelector('button[type="submit"]');
+    // 处理表单提交
+    function handleFormSubmit(form, formType) {
+        console.log('处理表单提交，类型:', formType);
+        
+        // 获取表单数据
+        const formData = getFormData(form, formType);
+        console.log('表单数据:', formData);
+        
+        // 验证表单数据
+        if (!validateForm(formData, formType)) {
+            console.log('表单验证失败');
+            return;
+        }
+        
+        // 显示加载状态
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
             const originalText = submitBtn.textContent;
             submitBtn.textContent = '提交中...';
             submitBtn.disabled = true;
             
-            try {
-                console.log('开始保存数据...');
-                
-                // 5. 保存到 localStorage
-                const savedData = saveFormData(formData, formType);
-                console.log('✅ 数据已保存:', savedData);
-                
-                // 6. 显示成功消息
-                console.log('显示成功消息...');
-                showSuccessMessage(formType);
-                
-                // 7. 重置表单
-                console.log('重置表单...');
-                this.reset();
-                
-                // 8. 验证保存
-                setTimeout(() => {
-                    const stored = localStorage.getItem('cement_submissions');
-                    const data = stored ? JSON.parse(stored) : [];
-                    console.log('✅ 验证保存: 当前有', data.length, '条数据');
+            // 模拟提交过程
+            setTimeout(() => {
+                try {
+                    // 保存数据
+                    const savedData = saveFormData(formData, formType);
+                    console.log('数据已保存:', savedData);
                     
-                    if (data.length > 0) {
-                        console.log('最后一条数据:', data[data.length - 1]);
+                    // 根据表单类型处理成功响应
+                    handleFormSuccess(formType, formData);
+                    
+                    // 重置表单（微信表单除外）
+                    if (formType !== 'wechat') {
+                        form.reset();
                     }
-                }, 500);
-                
-            } catch (error) {
-                console.error('提交错误:', error);
-                alert('提交失败，请稍后重试');
-            } finally {
-                // 恢复按钮状态
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                } catch (error) {
+                    console.error('提交失败:', error);
+                    alert('提交失败，请稍后重试');
+                } finally {
+                    // 恢复按钮状态（微信表单已隐藏，不需要恢复）
+                    if (formType !== 'wechat') {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                }
+            }, 1000);
+        }
+    }
+    
+    // 验证表单
+    function validateForm(formData, formType) {
+        console.log('验证表单，类型:', formType);
+        
+        // 基本验证
+        if (!formData || Object.keys(formData).length === 0) {
+            alert('请填写表单数据');
+            return false;
+        }
+        
+        // 检查必填字段
+        const requiredFields = getRequiredFieldsByType(formType);
+        const missingFields = [];
+        
+        requiredFields.forEach(field => {
+            const value = formData[field];
+            if (!value || value === '' || value === false) {
+                missingFields.push(field);
             }
         });
-    });
+        
+        if (missingFields.length > 0) {
+            alert(`请填写以下必填字段：${missingFields.join(', ')}`);
+            return false;
+        }
+        
+        // 验证邮箱格式
+        if (formData.email && !isValidEmail(formData.email)) {
+            alert('请输入有效的邮箱地址');
+            return false;
+        }
+        
+        console.log('表单验证通过');
+        return true;
+    }
     
-    // 模态框关闭事件
-    const closeSuccessModal = document.getElementById('close-success-modal');
-    const successModal = document.getElementById('success-modal');
+    // 处理表单成功
+    function handleFormSuccess(formType, formData) {
+        console.log('处理表单成功，类型:', formType);
+        
+        switch(formType) {
+            case 'wechat':
+                showWechatQR(formData);
+                break;
+            default:
+                showSuccessModal(formType);
+                break;
+        }
+    }
     
+    // 显示微信二维码
+    function showWechatQR(formData) {
+        console.log('显示微信二维码');
+        
+        const wechatForm = document.getElementById('wechat-form');
+        if (!wechatForm) {
+            console.error('未找到微信表单');
+            return;
+        }
+        
+        const formSection = wechatForm.querySelector('#wechat-form-section');
+        const qrSection = wechatForm.querySelector('#wechat-qr-section');
+        
+        if (formSection && qrSection) {
+            // 隐藏表单，显示二维码
+            formSection.style.display = 'none';
+            qrSection.style.display = 'block';
+            console.log('切换显示：隐藏表单，显示二维码');
+            
+            // 填充备注信息
+            const companySpan = document.getElementById('qr-note-company');
+            const nameSpan = document.getElementById('qr-note-name');
+            
+            if (companySpan) {
+                companySpan.textContent = formData.company || '公司';
+                console.log('设置公司:', formData.company);
+            }
+            if (nameSpan) {
+                nameSpan.textContent = formData.name || '姓名';
+                console.log('设置姓名:', formData.name);
+            }
+            
+            // 滚动到二维码区域
+            setTimeout(() => {
+                qrSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        } else {
+            console.error('未找到表单部分或二维码部分');
+            if (!formSection) console.error('未找到: #wechat-form-section');
+            if (!qrSection) console.error('未找到: #wechat-qr-section');
+        }
+    }
+    
+    // 绑定模态框事件
+    function bindModalEvents() {
+        const closeSuccessModal = document.getElementById('close-success-modal');
+        const successModal = document.getElementById('success-modal');
+        const modalClose = document.querySelectorAll('.modal-close');
+        
+        if (closeSuccessModal) {
+            closeSuccessModal.addEventListener('click', closeModal);
+        }
+        
+        if (successModal) {
+            successModal.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    closeModal();
+                }
+            });
+        }
+        
+        modalClose.forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+    }
+    
+    // 绑定微信相关事件
+    function bindWechatEvents() {
+        // 编辑信息按钮
+        const editWechatFormBtn = document.getElementById('edit-wechat-form');
+        if (editWechatFormBtn) {
+            editWechatFormBtn.addEventListener('click', function() {
+                console.log('点击编辑信息按钮');
+                const formSection = document.getElementById('wechat-form-section');
+                const qrSection = document.getElementById('wechat-qr-section');
+                
+                if (formSection && qrSection) {
+                    qrSection.style.display = 'none';
+                    formSection.style.display = 'block';
+                    
+                    // 滚动到表单顶部
+                    setTimeout(() => {
+                        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                }
+            });
+        }
+        
+        // 下载二维码按钮
+        const downloadQrBtn = document.getElementById('download-qr');
+        if (downloadQrBtn) {
+            downloadQrBtn.addEventListener('click', function() {
+                console.log('点击下载二维码');
+                const qrImg = document.querySelector('.qr-image img');
+                if (qrImg && qrImg.src) {
+                    const link = document.createElement('a');
+                    link.href = qrImg.src;
+                    link.download = '水泥安环智脑-微信二维码.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    alert('二维码图片未找到或未加载');
+                }
+            });
+        }
+    }
+    
+    // 关闭模态框
     function closeModal() {
+        const successModal = document.getElementById('success-modal');
         if (successModal) {
             successModal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     }
     
-    if (closeSuccessModal) {
-        closeSuccessModal.addEventListener('click', closeModal);
-    }
-    
-    // 点击模态框外部关闭
-    if (successModal) {
-        successModal.addEventListener('click', function(e) {
-            if (e.target === successModal) {
-                closeModal();
+    // 显示成功模态框
+    function showSuccessModal(formType) {
+        console.log('显示成功模态框，类型:', formType);
+        
+        const successModal = document.getElementById('success-modal');
+        const successTitle = document.getElementById('success-title');
+        const successMessage = document.getElementById('success-message');
+        
+        if (!successModal || !successTitle || !successMessage) {
+            console.error('成功模态框元素未找到');
+            alert('提交成功！');
+            return;
+        }
+        
+        const messages = {
+            'consultation': {
+                title: '预约提交成功！',
+                message: '我们将在24小时内与您确认咨询时间，请保持电话和邮箱畅通。'
+            },
+            'partnership': {
+                title: '合作申请提交成功！',
+                message: '我们将在3个工作日内与您联系，请保持电话和邮箱畅通。'
+            },
+            'other': {
+                title: '咨询提交成功！',
+                message: '我们将在24小时内回复您的咨询，请保持邮箱畅通。'
             }
-        });
+        };
+        
+        const msg = messages[formType] || {
+            title: '提交成功！',
+            message: '我们将在24小时内与您联系，请保持电话和邮箱畅通。'
+        };
+        
+        successTitle.textContent = msg.title;
+        successMessage.textContent = msg.message;
+        
+        successModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
-    
-    // 关闭按钮
-    const modalClose = document.querySelectorAll('.modal-close');
-    modalClose.forEach(btn => {
-        btn.addEventListener('click', closeModal);
-    });
 });
 
 // ========== 工具函数 ==========
 
 // 获取表单数据
 function getFormData(form, formType) {
-    console.log('=== 开始提取表单数据 ===');
-    console.log('表单类型:', formType);
-    
     const formData = {};
     
     // 表单类型到字段前缀的映射
@@ -219,13 +442,11 @@ function getFormData(form, formType) {
     };
     
     const prefix = prefixMap[formType] || '';
-    console.log('字段前缀:', prefix);
     
     // 收集所有表单字段
     const inputs = form.querySelectorAll('input, select, textarea');
-    console.log('找到的输入字段数量:', inputs.length);
     
-    inputs.forEach((input, index) => {
+    inputs.forEach((input) => {
         const originalId = input.id;
         let key = originalId;
         let value;
@@ -248,42 +469,7 @@ function getFormData(form, formType) {
         formData[key] = value;
     });
     
-    console.log('最终提取的数据:', formData);
     return formData;
-}
-
-// 验证表单数据
-function validateFormData(formData, formType) {
-    console.log('=== 验证表单数据 ===');
-    
-    // 根据表单类型确定必填字段
-    const requiredFields = getRequiredFieldsByType(formType);
-    console.log('必填字段:', requiredFields);
-    
-    const missingFields = [];
-    
-    // 检查必填字段
-    requiredFields.forEach(field => {
-        const value = formData[field];
-        if (!value || value === '' || value === false) {
-            missingFields.push(field);
-        }
-    });
-    
-    if (missingFields.length > 0) {
-        console.error('缺少必要字段:', missingFields);
-        alert(`请填写以下必填字段：${missingFields.join(', ')}`);
-        return false;
-    }
-    
-    // 验证邮箱格式
-    if (formData.email && !isValidEmail(formData.email)) {
-        alert('请输入有效的邮箱地址');
-        return false;
-    }
-    
-    console.log('✅ 表单数据验证通过');
-    return true;
 }
 
 // 根据表单类型获取必填字段
@@ -304,79 +490,16 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// 显示成功消息
-function showSuccessMessage(formType) {
-    console.log('显示成功消息，类型:', formType);
-    
-    const successModal = document.getElementById('success-modal');
-    const successTitle = document.getElementById('success-title');
-    const successMessage = document.getElementById('success-message');
-    
-    if (!successModal || !successTitle || !successMessage) {
-        console.error('成功模态框元素未找到');
-        alert('提交成功！');
-        return;
-    }
-    
-    const messages = {
-        'consultation': {
-            title: '预约提交成功！',
-            message: '我们将在24小时内与您确认咨询时间，请保持电话和邮箱畅通。'
-        },
-        'wechat': {
-            title: '提交成功！',
-            message: '微信二维码和详细资料已发送到您的邮箱，请注意查收。'
-        },
-        'partnership': {
-            title: '合作申请提交成功！',
-            message: '我们将在3个工作日内与您联系，请保持电话和邮箱畅通。'
-        },
-        'other': {
-            title: '咨询提交成功！',
-            message: '我们将在24小时内回复您的咨询，请保持邮箱畅通。'
-        }
-    };
-    
-    const msg = messages[formType] || {
-        title: '提交成功！',
-        message: '我们将在24小时内与您联系，请保持电话和邮箱畅通。'
-    };
-    
-    successTitle.textContent = msg.title;
-    successMessage.textContent = msg.message;
-    
-    successModal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    console.log('✅ 成功消息已显示');
-}
-
 // 保存数据到 localStorage
-// 修改 saveFormData 函数，确保字段名标准化
 function saveFormData(formData, formType) {
-    console.log('=== 保存数据到 localStorage ===');
-
-        
-    // 确保 formType 是正确的类型
-    const validTypes = ['consultation', 'wechat', 'partnership', 'other'];
-    if (!validTypes.includes(formType)) {
-        // 如果是合作洽谈中的公司类型，转换为 partnership
-        if (formType === 'hardware' || formType === 'software' || formType === 'service') {
-            formType = 'partnership';
-        }
-    }
-    
-    
     // 创建标准化的数据对象
     const submission = {
         id: Date.now(),
         type: formType,
         timestamp: new Date().toLocaleString('zh-CN'),
         status: 'pending',
-        ...formData  // 这里包含的是去掉前缀的字段名
+        ...formData
     };
-    
-    console.log('要保存的数据（标准化后）:', submission);
     
     // 获取现有数据
     const storageKey = 'cement_submissions';
@@ -386,7 +509,6 @@ function saveFormData(formData, formType) {
         const stored = localStorage.getItem(storageKey);
         if (stored) {
             existingData = JSON.parse(stored);
-            console.log('现有数据量:', existingData.length);
         }
     } catch (error) {
         console.error('解析现有数据失败:', error);
@@ -399,43 +521,11 @@ function saveFormData(formData, formType) {
     // 保存到 localStorage
     try {
         localStorage.setItem(storageKey, JSON.stringify(existingData));
-        console.log(`✅ 数据已保存，总数据量: ${existingData.length}`);
-        
-        // 同时保存一个备份，保持原始字段名
-        saveBackupData(formData, formType, submission.id);
-        
         return submission;
     } catch (error) {
         console.error('保存到 localStorage 失败:', error);
         throw error;
     }
-}
-
-// 保存备份数据（包含原始字段名）
-function saveBackupData(formData, formType, id) {
-    const backupKey = 'cement_submissions_raw';
-    let backupData = [];
-    
-    try {
-        const stored = localStorage.getItem(backupKey);
-        if (stored) {
-            backupData = JSON.parse(stored);
-        }
-    } catch (error) {
-        console.error('解析备份数据失败:', error);
-        backupData = [];
-    }
-    
-    // 保存原始表单数据（带前缀）
-    const rawData = {
-        id: id,
-        type: formType,
-        timestamp: new Date().toLocaleString('zh-CN'),
-        ...formData
-    };
-    
-    backupData.push(rawData);
-    localStorage.setItem(backupKey, JSON.stringify(backupData));
 }
 
 // 调试函数
@@ -451,5 +541,39 @@ function debugCheckStorage() {
     }
 }
 
+// 填充测试数据
+function fillTestData() {
+    console.log('填充测试数据');
+    
+    // 填充微信表单
+    const wechatForm = document.getElementById('wechat-form-content');
+    if (wechatForm) {
+        document.getElementById('wechat-name').value = '李四';
+        document.getElementById('wechat-company').value = '测试公司';
+        document.getElementById('wechat-position').value = '经理';
+        document.getElementById('wechat-industry').value = 'cement';
+        document.getElementById('wechat-purpose').value = 'resource';
+        document.getElementById('wechat-terms').checked = true;
+        console.log('微信表单测试数据填充完成');
+    }
+    
+    // 填充预约咨询表单
+    const consultForm = document.getElementById('consultation-form-content');
+    if (consultForm) {
+        document.getElementById('consult-name').value = '张三';
+        document.getElementById('consult-position').value = '安全主管';
+        document.getElementById('consult-company').value = '测试水泥厂';
+        document.getElementById('consult-industry').value = 'cement';
+        document.getElementById('consult-email').value = 'test@example.com';
+        document.getElementById('consult-phone').value = '13800138000';
+        document.getElementById('consult-service').value = 'diagnosis';
+        document.getElementById('consult-needs').value = '需要数字化安全管理系统';
+        document.getElementById('consult-time').value = 'morning';
+        document.getElementById('consult-terms').checked = true;
+        console.log('预约咨询表单测试数据填充完成');
+    }
+}
+
 // 确保函数在全局可用
 window.debugCheckStorage = debugCheckStorage;
+window.fillTestData = fillTestData;
